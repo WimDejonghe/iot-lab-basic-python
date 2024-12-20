@@ -33,7 +33,7 @@ De ESP32 is een perfecte upgrade van de ESP8266 die zo populair is geweest. Ter 
 
 ## Software
 
-De ESP32 kan via verschillende platformen worden geprogrammeerd. Het is heel populair om deze te programmeren via de Arduino IDE. Echter zullen we hier Visual Studio Code gebruiken. IDE is de afkorting van Integrated Development Enveronment en kan vertaald worden als een geïntegreerde ontwikkelomgeving.
+De ESP32 kan via verschillende platformen worden geprogrammeerd. Het is heel populair om deze te programmeren via de Arduino IDE in een C++ taal. Echter zullen we hier Thonny-IDE editor gebruiken om de controller te programmeren in Python. IDE is de afkorting van Integrated Development Enveronment en kan vertaald worden als een geïntegreerde ontwikkelomgeving.
 
 ![example image](./images/ide.png "Links de Arduino IDE en rechts de Visual Studio Code IDE.")
 
