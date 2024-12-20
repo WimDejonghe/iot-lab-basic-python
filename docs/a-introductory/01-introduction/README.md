@@ -37,10 +37,10 @@ De ESP32 kan via verschillende platformen worden geprogrammeerd. Het is heel pop
 
 ![example image](./images/ide.png "Links de Arduino IDE en rechts de Visual Studio Code IDE.")
 
-Visual Studio Code, ook afgekort als VSC, is een IDE die voor verschillende ontwikkelingen kan worden gebruikt en wordt professioneel heel veel gebruikt. Je kan VSC gebruiken voor ontwikkelingen in verschillende talen zoals JAVA, Python, C, ....
+Thonny, is een IDE die voor verschillende doeleinden kan worden gebruikt. Je kan Thonny gebruiken voor ontwikkelingen met Python.
 
 
-De Arduino IDE is goed voor kleine, beperkte ontwikkelingen, voor gevorderde code (meer dan 200 lijnen code), meerdere bestanden, het gebruik van een intelisense, en andere functies biedt VSC een betere oplossing. VSC biedt voor de ESP32 niet alleen de mogelijkheid om code te schrijven, maar ook om die te compileren en die te downloaden in de ESP32 microcontroller.Tevens bezit VSC een Serial Terminal scherm die het mogelijk maakt om tijdens de run van de ESP32 serieëel data te kunnen uitwisselen. Dit kan een ondersteuning zijn voor het debuggen van uw code.
+De Thonny IDE is een goede ontwikkelomgeving voor python code voor zowel computer als microcontrollers. Voor de microcontroller wordt niet dezelfde python omgeving gebruikt als python scripts voor op de computer, maar hier wordt gebruik gemaakt van MicroPython. Dit is een ontwikkelomgeving die specifiek is ontwikkeld voor microprocessoren en controllers. Tevens bezit Thonny een Serial Terminal scherm die het mogelijk maakt om tijdens de run van de ESP32 serieëel data te kunnen uitwisselen. Dit kan een ondersteuning zijn voor het debuggen van uw code.
 
 :::warning
 Een echte debug-tool met breakpoints is zonder extra hardware echter niet mogelijk, maar het kan wel.

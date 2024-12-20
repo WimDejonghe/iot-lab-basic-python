@@ -1,70 +1,54 @@
-# Installatie van Visual Studio Code
+# Installatie van Thonny
 
-Om Visual Studio Code te installeren ga je naar de website:
+Om de Thonny IDE te installeren ga je naar de website:
 
-[https://code.visualstudio.com/download/](https://code.visualstudio.com/download/)
+[https://thonny.org](https://thonny.org)
 
 Klik op Windows (1) zoals in volgende figuur.
 
-![example image](./images/vs1.png "Downloaden van Visual Studio Code.")
+![example image](./images/vs1.png "Downloaden van Thonny.")
 
-Klik op de gedownloade executable zoals in volgende figuur is weergegeven.
+Voer de gedowloade .exe file uit.
 
 ![example image](./images/vs2.png "De gedownloade executable van VSC.")
 
-Selecteer vervolgens de taal en klik op ‘OK’ (1).
+Volg de installatie wizard om het installatieproces te vervolledigen. Klik Next.
 
 ![example image](./images/vc3.png "Selecteren van de taal van VSC.")
 
-Klik vervolgens op ‘I accept the agreement’ (1) en dan op ‘Next’ (2).
-
-![example image](./images/vc4.png "Installeren VSC.")
-
-Klik op ‘Next’ (1).
-
-![example image](./images/vc5.png "Installeren VSC.")
-
-Klik op ‘Next’ (1).
-
-![example image](./images/vc6.png "Installeren VSC.")
-
-Selecteer de selectievakjes (1) en (2) en klik op ‘Next’ (3).
-
-![example image](./images/vc7.png "Installeren VSC.")
-
-Klik op ‘Install’ (1) om het installatieproces te starten.
-
-![example image](./images/vc8.png "Installeren VSC.")
-
-Klik op ‘Finish’ (1) om het installatieproces te beëindigen.
-
-![example image](./images/vc9.png "Installeren VSC.")
-
-Open Visual Studio Code en je wordt begroet met de nieuwste realease notes van het programma.
-
-![example image](./images/vc10.png "Installeren VSC.")
+Na het vervolledigen van de installatie, open Thonny IDE. Het volgende window komt te voorschijn.
 
 
-## Installatie van de PlatformIO IDE extension
+## Installatie van MicroPython op de ESP32
 
-Het is mogelijk om vanuit Visual Studio Code de ESP32 te programmeren maar daarvoor moet de extensie PlatformIO geïnstalleerd worden in VSC.
+Er zijn verschillende manieren om de MicroPython Firmware te flashen op de ESP32. Normaal kan dit direct via de Thonny IDE gebeuren. 
 
-Start Visual Studio Code op. Selecteer het extension-icon (1). Typ ‘platformio ide’ in, in het zoekvenster (2). Selecteer Platformio IDE (3) en klik op ‘Install’ (4).
+Verbind de ESP32 microcontroller met een USB kabel aan de computer (waar Thonny IDE op geïnstalleerd staat).
 
-![example image](./images/vc11.png "Installeren van PlatformIo.")
+Start of open Thonny IDE op de computer. En kies binnen het menu van Thonny op **Tools > Options > Interpreter**.
 
-Als de installatie volledig is uitgevoerd, dan staat er een vinkje naast installed (1). Klik vervolgens op de knop ‘Disable’ (2) en vervolgens op Enable zodat de extansie zeker geactiveerd is zoals in de volgende figuur.
+Selecteer de interpreter en let erop dat de PORT de juiste driver bezit. Het zou kunnen dat uw computer die driver niet bezit, dan moet je die eerst zoeken en downloaden van het internet. Je kan via configuratiescherm van uw computer de hardware opvragen en controleren of er PORTS en LPT een COM-poort is geselecteerd voor de ESP32. Indien niet, update dan via die driver het onbekende apparaat en een COM-poort zou moeten ter beschikking komen.
 
-![example image](./images/vc12.png "Activatie van PlatformIo.")
+Kies daarna voor de juiste interpreter ESP32 en de juiste COM-poort.
 
-Je kan zien dat de extensie geactiveerd is door het vinkje naast ‘Enable’ (1).
+![example image](./images/vc11.png "Installeren van MicroPython via de seriële poort.")
 
-![example image](./images/vc13.png "Activatie van PlatformIo.")
+Klik op Install or update firmware. Dit kan een tijdje in beslag nemen.
 
-Klik links op het icoon van PlatformIO (1). Als het niet zichtbaar zou zijn sluit je VSC af en start je het programma opnieuw op. Het heropstarten na een installatie van een extensie is sowieso aangewezen om te doen. Klik vervolgens op de home knop (2) zodat je het scherm van volgende figuur te zien krijgt.
+Nu is de ESP32 klaar om Python scripts uit te voeren. Dit kan gecontrolleerd worden door de Shell te bekijken.
 
-![example image](./images/vc14.png "Activatie van PlatformIo.")
+![example image](./images/vc12.png "Activatie van MicroPython.")
 
-Visual Studio Code is klaar om de ESP32 te programmeren, te debuggen en het programma in de controller te laden.
+In de Shell kunnen er MicroPython code onmiddelijk worden uitgevoerd. Bijvoorbeeld door **help()** te typen.
+
+![example image](./images/vc13.png "Testen MicroPython opde ESP32.")
+
+Als er een reponse komt, dan is alles ok. Een LED (onboard) aansturen kan door (Let wel op de Feather zit de onboard LED op PIN13!, vervang dus 2 door 13.):
+
+![example image](./images/vc14.png "Aansturen van de onboard LED")
+
+De LED kan worden gedoofd door hetzelfde uit te voeren maar een 0 in te geven bij value.
+
+![example image](./images/vc10.png "Aansturen van de onboard LED")
 
 ***
