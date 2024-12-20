@@ -1,0 +1,29 @@
+{
+  "name": "ems",
+  "version": "1.0.0",
+  "description": "��#\u0000 \u0000e\u0000m\u0000s\u0000\r\u0000 \u0000",
+  "main": "index.js",
+  "directories": {
+    "doc": "src"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "SET NODE_OPTIONS=--openssl-legacy-provider && vuepress dev src",
+    "build": "vuepress build src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WimDejonghe/ems.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/WimDejonghe/ems/issues"
+  },
+  "homepage": "https://github.com/WimDejonghe/ems#readme",
+  "devDependencies": {
+    "vuepress": "^1.9.10",
+    "vuepress-plugin-mathjax": "^1.2.8",
+    "vuepress-plugin-zooming": "^1.1.8"
+  }
+}
