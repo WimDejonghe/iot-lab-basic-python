@@ -27,28 +27,34 @@ Uitleg code:
 > - in de oneindige lus (while True), wordt telkens de toestand van die uitgang gelezen door de ESP32 en wordt het inverse als value geschreven naar die specifieke pin.
 > - daarna wordt er een tijdje gewacht (sleep) met een eigenschap van 0,5 seconden.
 
-in VSC, klik op het icoon van PIO en klik op New Project om een nieuw project te starten:
+Bewaar deze code in een python bestand (naam van het bestand maakt niet uit, let wel extensie is .py). Kies voor de optie : This Computer. Bepaal zelf in welke map je dit allemaal verzamelt.
+
 
 ![example image](./images/vsc_15.png "An exemplary image")
 
-Geef het project een goeie naam: vb. : "Blink_LED" en selecteer de juiste microcontroller board. Het Arduino Framework wordt gebruikt om de Arduino-code te compileren naar binaire code die in de esp32 microcontroller kan worden geprogrammeerd.
+![example image](./images/vsc_14.png "An exemplary image")
 
-Let op de locatie van uw project binnen de mappenstructuur van uw computer. Gebruik hiervoor logische sructuren zodat je later uw projecten kan terug vinden!!
+Geef het project een steed een goeie logische naam: vb. : "Blink_LED". 
 
-De standaard locatie staat nu ingesteld op het pad : Documents >PlatformIO >Projects 
+Let op de locatie van uw project binnen de mappenstructuur van uw computer. Gebruik hiervoor logische structuren zodat je later uw projecten kan terug vinden!!
 
-![example image](./images/vsc_16.png "An exemplary image")
+![example image](./images/vsc_13.png "An exemplary image")
 
-Klik "Finish".
+Schrijf de code en klik op het groene driehoekje. De onboard LED op de ESP32 (aangesloten op pin 13) knippert.
 
-Er wordt een nieuw project toegevoegd aan de Workspace. Open platformio.ini en voeg toe:
+De uitvoering stoppen kan door op de STOP knop te klikken in Thonny.
+
+## Tweede manier
+
+Bij de tweede manier is de code hetzelfde. De bestandsnaam moet hier echter main.py of boot.py zijn.
+Kies bij het opslaan nu voor MicroPython device (wat de ESP32 hier is).
 
 ![example image](./images/vsc_17.png "An exemplary image")
 
-VS Code en PlatformIO hebben een mappenstructuur die verschilt van het standaard .ino-project. Als u op het tabblad Verkenner klikt, ziet u alle bestanden die het heeft gemaakt in uw projectmap. Het lijkt misschien veel bestanden om mee te werken. Maar maak je geen zorgen, meestal hoef je alleen maar met een of twee van die bestanden om te gaan.
+Het kan wel zijn dat je nu de ESP32 eens moet resetten. Nu wordt het programma uitgevoerd. Het programma kan niet gestopt worden. Enkel het overschrijven van de main.py of boor.py op het device kan het programma stoppen. Het programma blijft nu in de ESP32 zitten, ook al wordt deze spanningsloos gezet. Na opstarten, wordt dit programma opnieuw automatisch gestart.
 
 :::warning
-Let op, je verwijdert, wijzigt of verplaatst best die bestanden niet. Anders kunt u uw project niet meer compileren met PlatformIO.
+??????????????????????????????????????????????????.
 :::
 
 **platformio.ini file**
