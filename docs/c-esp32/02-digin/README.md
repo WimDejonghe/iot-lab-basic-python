@@ -155,7 +155,7 @@ In de labo's wordt altijd met een externe pullup weerstand gewerkt!!.
 ***
 
 <div style="background-color:darkgreen; text-align:left; vertical-align:left; padding:15px;">
-<p style="color:green; margin:10px">
+<p style="color:lightgreen; margin:10px">
 Opdracht: Digitale ingang blokgolf.
 <ul>
 <li>Als de drukknop niet is ingedrukt moet er een blokgolfspanning op een uitgang gegenereerd worden met een periode van 50Hz met een duty cycle van 50% (Ton = Toff).</li>
@@ -168,7 +168,7 @@ Visualiseer het resultaat met een oscilloscoop. Leg de werking uit van de oscill
 ***
 
 <div style="background-color:darkgreen; text-align:left; vertical-align:left; padding:15px;">
-<p style="color:green; margin:10px">
+<p style="color:lightgreen; margin:10px">
 Opdracht: Digitale ingang tellen.
 <ul>
 <li>Maak een systeem waarbij je het aantal keer telt dat de drukknop is ingedrukt.</li>

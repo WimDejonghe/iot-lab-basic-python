@@ -77,14 +77,11 @@ Op lijn 11 is een constante POTENTIOMETER gedefinieerd met de waarde A0. Dit wil
 Op lijn 18 wordt de analoge spanning op de pin waar de POTENTIOMETER (=A0) mee verbonden is op de ESP32 die zich bevindt tussen 0V en 3,3V omgezet wordt naar een getal tussen 0 en 4095.
 Dit getal wordt in de integer variabele intPotValue geplaatst.
 
-```cpp
-void loop()
-{
-  //Lezen van de analoge spanning op de pin waar de potentiometer is aangesloten.
-  //De analoge waarde wordt omgezet naar een getal tussen 0 en 4096 en 
-  //wordt in de integervariabee intPotValue geplaatst.
-  int intPotValue = analogRead(POTENTIOMETER);
-}
+```python
+import machine
+adc = machine.ADC(0) #eenmalige declaratie
+
+adc.read() #lezen van de analoge waarde
 ```
 
 ## Aansluiten van een analoge spanning aan een analoge ingang.
