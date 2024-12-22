@@ -1,4 +1,4 @@
-# Installing ESP32/ESP8266 Libraries on MicroPython
+# Installing ESP32 Libraries on MicroPython
 
 Een standaard project kan worden uitgebreid met library's. Die library's zijn stukken code die bepaalde functies toelaten om in de code te gebruiken. Voor veel externe hardware ( sensoren / actuatoren) die kan gekoppeld worden aan de microcontroller kan een library worden gevonden op het internet. Hier wordt besproken om een sensor, die temperatuur en vochtigheid kan meten, toe te voegen aan het bestaand project. Het type sensor is BME280 (slave) die via een I2C (SDA-SCL) bus communiceert met de ESP32 (master).
 
@@ -22,6 +22,8 @@ Deze sensor communiceert door gebruik te maken van de I2C communicatie protocol,
 In een schema ziet dit als volgt uit:
 
 ![example image](./images/vsc_4.png "An exemplary image")
+
+## Gebruik van de library
 
 Zoek (vb Github), download, kopieer of maak zelf een bestand BME280.py met de juiste content. Lees de info omtrent het library bestand.
 
