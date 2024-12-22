@@ -72,14 +72,14 @@ Daarom stelt het Nyquist-bemonsteringscriterium dat de bemonsteringsfrequentie t
 
 ## AnalogRead
 
-Om een analoge ingang te gebruiken hoeft men niet zoals een digitale in -of uitgang te zeggen hoe men de pin wil gebruiken. Om een analoge spanning om te zetten naar een integer moet men enkel de methode AnalogRead gebruiken.
-Op lijn 11 is een constante POTENTIOMETER gedefinieerd met de waarde A0. Dit wil zeggen dat bij het compilen overal waar POTENTIOMETER staat deze vervangen wordt door A0.
-Op lijn 18 wordt de analoge spanning op de pin waar de POTENTIOMETER (=A0) mee verbonden is op de ESP32 die zich bevindt tussen 0V en 3,3V omgezet wordt naar een getal tussen 0 en 4095.
-Dit getal wordt in de integer variabele intPotValue geplaatst.
+Om een analoge ingang te gebruiken hoeft men niet zoals een digitale in -of uitgang te zeggen hoe men de pin wil gebruiken. Om een analoge spanning om te zetten naar een integer moet men enkel de methode ADC.read() gebruiken.
+In volgende code wordt een variabele met de naam adc gemaakt op basis van de klasse ADC binnen de Machine library van MicoPython. Met ADC.read() wordt de spanning op de pin waar de POTENTIOMETER (=A0) mee verbonden is op de ESP32 die zich bevindt tussen 0V en 3,3V omgezet wordt naar een getal tussen 0 en 4095.
+Dit getal wordt in de integer variabele adc geplaatst.
 
 ```python
 import machine
-adc = machine.ADC(0) #eenmalige declaratie
+adc = machine.ADC(26) #eenmalige declaratie var variabele adc van het type ADC
+#De methode ADC bezit 1 parameter nl de pin van de ESP32
 
 adc.read() #lezen van de analoge waarde
 ```
