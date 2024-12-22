@@ -35,7 +35,9 @@ Kies daarna voor de juiste interpreter ESP32 en de juiste COM-poort.
 
 Klik op Install or update firmware. Dit kan een tijdje in beslag nemen.
 
-Nu is de ESP32 klaar om Python scripts uit te voeren. Dit kan gecontrolleerd worden door de Shell te bekijken.
+![example image](./images/mp1.png "Installeren van MicroPython via de seriële poort.")
+
+Dit kan een tijdje in beslag nemen (bekijk de procentuele voortgang). Nu is de ESP32 klaar om Python scripts uit te voeren. Dit kan gecontrolleerd worden door de Shell te bekijken.
 
 ![example image](./images/vc12.png "Activatie van MicroPython.")
 

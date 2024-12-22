@@ -1,8 +1,31 @@
-# Platform IDE Overview
-
+# Een eerste Python script ingeven en uitvoeren
 Om nu met het geheel te werk te gaan (schrijven van code, compileren en uploaden naar de microcontroller) wordt nu vertrokken vanuit een klassiek voorbeeld om tot een knipperende LED te komen (blinking LED).
 
-## Create a New Project
+Er zijn echter twee manieren om een script uit te voeren op de microcontroller.
+
+> - de eerste manier is door een python bestand aan te maken op de computer en die te laten uitvoeren op de microcontroller. Dat gebeurt door op het groene driehoekje te klikken (F5), Run current script te klikken. Hierbij wordt het script aangeboden aan de MicroPython omgeving op de microcontroller en zal deze het script uitvoeren. Let wel: het script wordt niet bewaard op de microcontroller. Na een reset van de ESP32 is het script niet aanwezig op de microcontroller en kan het dus ook niet meer worden uitgevoerd. Het script staat wel als .py bestand op de computer.
+> - de tweede manier is om de Python script code te bewaren op de micrcontroller zelf. Gebeurt dit onder de naam main.py of boot.py, dan zal het script telkens worden uitgevoerd na een reset van de microcontroller.
+
+## Eerste manier
+
+Open Thonny IDE, maak een nieuw .py bestand aan, save dit bestand op een specifieke map op de computer. Schrijf volgende code in dit .py bestand:
+
+```python
+from machine import Pin
+from time import sleep
+led = Pin(13, Pin.OUT)
+while True:
+  led.value(not led.value())
+  sleep(0.5)
+
+```
+
+Uitleg code: 
+> - om een pin als GPIO te gebruiken van de ESP32 moeten specifieke eigenschappen van de ESP32 worden geladen. Dit gebeurt door binnen de library MACHINE de PIN eigenschappen te laden.
+> - idem voor het gebruik van een WACHT-insctructie (SLEEP) die moet geladen worden vanuit de TIME library.
+> - led is een variabele van het type PIN en krijgt de eigenschappen van een nummer (Pin nummer van de microcontroller), en dat die piin een uitgang is (om een LED aan te sturen).
+> - in de oneindige lus (while True), wordt telkens de toestand van die uitgang gelezen door de ESP32 en wordt het inverse als value geschreven naar die specifieke pin.
+> - daarna wordt er een tijdje gewacht (sleep) met een eigenschap van 0,5 seconden.
 
 in VSC, klik op het icoon van PIO en klik op New Project om een nieuw project te starten:
 
