@@ -19,8 +19,8 @@ module.exports = {
     logo: 'https://www.vives.be/sites/default/files/uploads/huisstijl/Logo VIVES Hogeschool - Smile.png',
     navbar: [
       { text: 'Toledo', link: 'https://toledo.kuleuven.be/portal' },
-      { text: 'Report Issue', link: 'https://github.com/WimDejonghe/iot-lab-basic/issues' },
-      { text: 'Organization', link: 'https://github.com/WimDejonghe/iot-lab-basic' }
+      { text: 'Report Issue', link: 'https://github.com/WimDejonghe/iot-lab-basic-python/issues' },
+      { text: 'Organization', link: 'https://github.com/WimDejonghe/iot-lab-basic-python' }
     ],
     sidebar: [
       {
@@ -28,7 +28,7 @@ module.exports = {
         link: '/about-this-course/README.md',
       },
       {
-        text: 'ESP32 en Visual Studio Code',
+        text: 'ESP32 en MicroPython',
         children: [
           '/a-introductory/01-introduction/README.md',
           '/a-introductory/02-introduction/README.md',
@@ -64,7 +64,7 @@ module.exports = {
         ]
       },
       {
-        text: 'Variabelen in C',
+        text: 'Variabelen in ESP32',
         children: [
          
           '/d-var/01-vars/README.md',
