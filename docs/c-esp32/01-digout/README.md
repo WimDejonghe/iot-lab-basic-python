@@ -75,7 +75,7 @@ led_onboard = Pin(13, Pin.OUT)
 Een digitale uitgang kan twee waarden aannemen. In de volgende figuur zijn een aantal mogelijkheden om een digitale uitgang een waarde de te geven.
 Als de uitgang laag, 0 of als false wordt ingesteld, dan wordt er een 0V spanning op de desbetreffende pin geplaatst (door de inwendige elektronica van de µC).
 Als de uitgang hoog, 1 of als true wordt ingesteld dan wordt er een spanning gelijk aan de voedingsspanning op de pin geplaatst. Bij de EPS32 is dit een spanning van 3,3V.
-De methode digitalWrite heeft twee parameters die moeten worden meegegeven tussen haakjes. De eerste parameter is de IO-pin waarover het gaat. Hier is dit *LED* die aangesloten is op IO-pin 13. De tweede parameter is de waarde van de uitgang. Bijvoorbeeld LOW, HIGH, … . De instructie wordt afgesloten met een puntkomma.
+De methode Pin.value(param) heeft één parameter die moeten worden meegegeven tussen haakjes. Die parameter heeft de toestand van die pin aan (hoog of laag, 1 of 0, True of False)is de IO-pin waarover het gaat. Hier is dit *LED* die aangesloten is op IO-pin 13. 
 
 ```python
 from machine import Pin
@@ -89,7 +89,7 @@ while True:
 ```
 
 ::: details
-Het commando "Pin.value()", wat echter ook gebruikt om een digtale ingang te lezen, echter dan zonder parameter van True of False.
+Het commando "Pin.value()", wat echter ook gebruikt om een digtale in- en zelfs een uitgang te lezen, echter dan zonder parameter van True of False.
 :::
 
 ***
@@ -134,6 +134,16 @@ De stroom is kleiner dan de 40mA en geeft voldoende licht als de stroom 7,72mA i
 In de vorige figuur is een led verbonden met het ontwikkelbord door gebruik te maken van een breadbord, en een serieweerstand van 220Ω en enkele draadjes.
 De voedingsspanning en de GND heeft men bij vele schema’s veel nodig en daarom gaan we de voedingsspanning 3,3V verbinden met de rode draad met het breadbord dat gebruikt wordt voor de voedingsspanning. De GND wordt met de zwarte draad verbonden met het breadbord met het deel dat gebruikt wordt voor de GND.
 IO-pin 21 wordt verbonden met de weerstand van 220Ω. Aan de andere aansluiting van de weerstand wordt de Anode van de led verbonden. De anode is de langste aansluiting. De kathode wordt verbonden met de GND.
+
+:::tip
+Er bestaan ook nog andere manieren om een digitale output aan te sturen in MicroPython:
+```python
+p0 = Pin(0, Pin.OUT)    # create output pin on GPIO0
+p0.on()                 # set pin to "on" (high) level
+p0.off()                # set pin to "off" (low) level
+p0.value(1)             # set pin to on/high
+```
+:::
 
 ## Opdrachten
 

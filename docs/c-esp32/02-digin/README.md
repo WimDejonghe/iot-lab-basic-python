@@ -5,7 +5,7 @@ mathjax:
 
 # GPIO: Input
 
-De esp32 bezit dus een aantal GPIO (General Purpose Input Output) pinnen. Deze pinnen kunnen gebruikt worden als digitale in- of output. Bij een input kan een digitale toestand (0 of 1) worden gelezen door de microcontroller. 
+De ESP32 bezit dus een aantal GPIO (General Purpose Input Output) pinnen. Deze pinnen kunnen gebruikt worden als digitale in- of output. Bij een input kan een digitale toestand (0 of 1) worden gelezen door de microcontroller. 
 
 
 > - Een ingang zal gebruikt worden om door de microcontroller te worden gelezen, hierop zal dus één of andere vorm van sensor of detector worden aangesloten. Meest eenvoudige vorm van zoiets is een drukknop.
@@ -39,7 +39,7 @@ De termen ‘logisch 0’ en ‘logisch 1’ worden meestal afgekort naar ‘0�
 
 ![example image](./images/esp32_2.jpg "De digitale IO-pinnen van de Adafruit Huzzah ESP32 feather")
 
-Enkel de pinnen met de gele labels zoals in Figuur 218 kunnen als digitale ingangen gebruikt worden. Behalve pin 12 is niet aan te raden om te gebruiken als ingang omdat deze standaard is voorzien van een pull-down weerstand en deze mag bij het booten (=opstarten) niet beïnvloed worden. Het maximum aantal is dus 20.
+Enkel de pinnen met de gele labels kunnen als digitale ingangen gebruikt worden. De pin 12 is niet aan te raden om te gebruiken als ingang, omdat deze standaard is voorzien van een pull-down weerstand en deze mag bij het booten (=opstarten) niet beïnvloed worden. Het maximum aantal is dus 20.
 
 ## Aansluiten van sensoren (bv drukknoppen) met een pullup weerstand
 
@@ -106,66 +106,45 @@ Als je naar het schema kijkt wordt er niet alleen een drukknop gebruikt maar ook
 
 Als men een IO-pin als ingang wil gebruiken moet men de pinMode van de IO-pin instellen als ingang zoals in vorige figuren. Het is het gemakkelijkst om hier de gele pinbenaming te gebruiken.
 De pinMode van de IO-pin stel je in bij opstart van de controller en dit gebeurt in de setup-methode.
-Aan de methode pinMode worden er twee parameters meegegeven tussen haakjes. De eerste parameter is de IO-pin waarover het gaat en de tweede parameter is hoe deze ingesteld moet worden, hier is dit als ingang. De instructie wordt afgesloten met een puntkomma.
+Aan de methode pinMode worden er twee parameters meegegeven tussen haakjes. De eerste parameter is de IO-pin waarover het gaat en de tweede parameter is hoe deze ingesteld moet worden, hier is dit als ingang. 
 
-```cpp
-#include <Arduino.h> //bibliotheek nodig voor de pinnamen en ...
-void setup()
-{
-    pinMode(21, INPUT);
-}
+Zie volgend voorbeeld waarbij pin2 als ingang wordt ingesteld en waarbij de toestand van die pin wordt gelezen en wordt doorgestuurd naar de seriële monitor.
+
+```python
+from machine import Pin
+
+p0 = Pin(0, Pin.OUT)    # create output pin on GPIO0
+p0.on()                 # set pin to "on" (high) level
+p0.off()                # set pin to "off" (low) level
+p0.value(1)             # set pin to on/high
+
+p2 = Pin(2, Pin.IN)     # create input pin on GPIO2
+print(p2.value())       # get value, 0 or 1
+
 ```
 
-Een goede programmeur zal een duidelijker naam willen voor de uitgang en zo weinig mogelijk gebruik maken van de IO-nummers. Daarom gaat men gebruik maken van constanten. De constanten
-declareert men voor de setup routine in het begin van het programma.
-Op lijn 3 is te zien dat de constante de naam ‘DRUKKNOP’ heeft en dat er 21 wordt toegewezen. ‘# define’ geeft weer dat DRUKKNOP gelijk staat aan 13. In de code wordt bij het compileren overal DRUKKNOP vervangen door 21.
+## De toestand lezen
 
-```cpp
-#include <Arduino.h> //bibliotheek nodig voor de pinnamen en ...
-#define DRUKKNOP 21
-void setup()
-{
-    pinMode(DRUKKNOP, INPUT);
-}
+Als je de toestand van een ingang wil weten, dan kan je de waarde bekomen door gebruik te maken van Pin.value(). Zie vorig voorbeeld.
+
+In volgend voorbeeld wordt een digitale uitgang (LED) aangestuurd met de toestand van een digitale ingang (drukknop)
+
+```python
+from machine import Pin
+
+led_onboard = Pin(13, Pin.OUT, value=0)    # create output pin on GPIO13, by start is the pin Low
+drukknop = Pin(21, Pin.IN)      # create input pin on GPIO21
+while True:
+    led_onboard.value(drukknop.value())
+
 ```
+De toestand van de drukknop wordt gelezen en wordt onmiddelijk toegekend aan de toestand van de digitale uitgang. 
 
-## digitalRead
+:::detail
+Wat zijn de bevindingen? Wanneer licht de LED op? Bij het drukken of niet drukken op de drukknop?
+:::
 
-Als je de toestand van een ingang wil weten, dan kan je de waarde bekomen door gebruik te maken van digitalRead.
-Hoe je dit kan doen is in de volgende code weergegeven.
-Om een waarde te lezen van een uitgang wordt deze bewaard in een variabele die gedeclareerd is op lijn 8.
-Het lezen van de waarde gebeurt op lijn 9. Dit wordt gedaan met de methode **digitalRead**. Aan de methode wordt de IO-pin waarvan de waarde moet gelezen worden meegegeven. Hier is dit DRUKKNOP en deze is aangesloten op pin 21. Deze methode geeft na uitvoeren een waarde terug. De teruggeven waarde wordt in de variabele intStatusDrukknop geplaatst. De instructie wordt afgesloten met een puntkomma.
 
-```cpp
-#include <Arduino.h> //bibliotheek nodig voor de pinnamen en ...
-#define DRUKKNOP 21 //naam DRUKKNOP verwijst naar 21
-void setup()
-{
-    pinMode(DRUKKNOP, INPUT); //DRUKKNOP instellen als ingang
-    uint8_t intStatusDrukknop; //Declaratie van variabele met 
-                                //naam en type: unsigned 8 bit integer 
-    intStatusDrukknop = digitalRead(DRUKKNOP); //Inlezen status DRUKKNOP en toestand wegschrijven in variabele
-}
-```
-
-## Voorbeeldprogramma digitale ingang
-
-Een voorbeeld om een ingang in te lezen en afhankelijk van de toestand van de drukknop die we verbinden met een digitale ingang zoals volgende code. Als de drukknop is ingedrukt laten we een LED op pin 13 branden. Als de drukknop niet is ingedrukt laten we hem doven.
-
-![example image](./images/code1.png "Een voorbeeldprogramma bij het inlezen van een digitale ingang.")
-
-In het rode kader (1) lezen we de toestand van de digitale ingang die we bij de declaratie hebben ingesteld en die we de naam DRUKKNOP hebben gegeven. Direct in dezelfde lijn controleren we de gelezen waarde als die logisch 0 is.
-
-Als ‘drukknop’ logisch 1 is, staat er een spanning van 3,3V op de ingang en dit komt overeen met een drukknop die niet ingedrukt is omdat we gebruik maken van een drukknop die verbonden is via een pull-up weerstand met de ingang zoals weergegeven in volgende figuur.
-
-![example image](./images/schema6.png "Inlezen van de waarde van een niet ingedrukte drukknop.")
-
-Als de drukknop niet is ingedrukt wordt de led laag gezet door een logisch 0 te sturen waardoor hij niet brandt. Dit is de code in blok (2) van Figuur 233 die wordt uitgevoerd.
-Als de drukknop logisch 0 is, staat er een spanning van 0V op de ingang en dit komt overeen met een drukknop die ingedrukt is omdat we gebruik maken van een drukknop die verbonden is via een pullup weerstand met de ingang zoals weergegeven in volgende figuur.
-
-![example image](./images/schema7.png "Inlezen van de waarde van een ingedrukte drukknop.")
-
-Als de drukknop is ingedrukt wordt de led hoog gezet door een logisch 1 te sturen waardoor hij gaat branden. Dit is de code in blok (3) van vorige code die wordt uitgevoerd.
 
 ::: tip
 De ESP32 bezit ook inwendig pull-up en pull-down weerstanden. Deze kunnen geactiveerd worden door pinMode(ingang, INPUT_PULLUP); Dit kan ook met PULLDOWN. Dan moet er uitwendig geen weerstand meer worden geplaatst.
