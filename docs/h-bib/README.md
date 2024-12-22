@@ -1,40 +1,65 @@
-# Installing ESP32/ESP8266 Libraries on PlatformIO IDE
+# Installing ESP32/ESP8266 Libraries on MicroPython
 
-Een standaard project (sketch) kan worden uitgebreid met library's. Die library's zijn stukken code die bepaalde functies toelaten om in de code te gebruiken. Voor veel externe hardware ( sensoren / actuatoren) die kan gekoppeld worden aan de microcontroller kan een library worden gevonden op het internet. Hier wordt besproken om een sensor, die temperatuur en vochtigheid kan meten, toe te voegen aan het bestaand project. Het type sensor is BME280.
+Een standaard project kan worden uitgebreid met library's. Die library's zijn stukken code die bepaalde functies toelaten om in de code te gebruiken. Voor veel externe hardware ( sensoren / actuatoren) die kan gekoppeld worden aan de microcontroller kan een library worden gevonden op het internet. Hier wordt besproken om een sensor, die temperatuur en vochtigheid kan meten, toe te voegen aan het bestaand project. Het type sensor is BME280 (slave) die via een I2C (SDA-SCL) bus communiceert met de ESP32 (master).
 
-Zoek een library voor deze sensor : "Adafruit_BME280"
+De library wordt best op het device geïnstalleerd. Hier volgt een voorbeeld.
+
+## Introductie BME280 sensor
+
+Deze sensor registreert barometrische luchtdruk, temperatuur en vochtigheid. Aangezien de luchtdruk wijzigt met de hoogte, kan deze sensor ook gebruikt worden als hoogtemeter. 
 
 ![example image](./images/vsc_23.png "An exemplary image")
 
-Klik op de library die je wil toevoegen aan het project: klik Add to Project.
+Deze sensor communiceert door gebruik te maken van de I2C communicatie protocol, dit vergemakkelijkt de bedrading. In de volgende tabel zijn de verbindingen af te leiden uit de tabel:
+
+| **BME280**    | **ESP32** |
+| -------- | ------- |
+| Vin  | 3.3V    |
+| GND | GND     |
+| SCL    | GPIO 22    |
+| SDA    | GPIO 21    |
+
+In een schema ziet dit als volgt uit:
+
+![example image](./images/vsc_4.png "An exemplary image")
+
+Zoek (vb Github), download, kopieer of maak zelf een bestand BME280.py met de juiste content. Lees de info omtrent het library bestand.
 
 ![example image](./images/vsc_24.png "An exemplary image")
 
-Selecteer het project waar de library moet worden toegevoegd:
+Zet dit bestand in dezelfde map als de MicroPython PY broncode bestanden op de computer.
 
-![example image](./images/vsc_25.png "An exemplary image")
+![example image](./images/vsc_5.png "An exemplary image")
 
-Hiermee wordt de bibliotheek identifier toegevoegd met behulp van de lid_deps-richtlijn in het platformio.ini-bestand. Als u het platformio.ini-bestand van uw project opent, zou het eruit moeten zien zoals in de volgende afbeelding.
+Druk RMT op dit bestand en lies voor **Upload to /**
 
-![example image](./images/vsc_26.png "An exemplary image")
+![example image](./images/vsc_6.png "An exemplary image")
 
-Als alternatief kunt u in het bibliotheekvenster, als u het tabblad Installatie selecteert en een beetje scrolt, de id voor de bibliotheek zien. U kunt elk van deze ID's kiezen, afhankelijk van de opties die u wilt gebruiken. De bibliotheek-ID's zijn rood gemarkeerd.
+De library staat op het MicroPython device kan worden aangesproken. Dit kan zeker ook vanaf een python bestand die op de computer staat en die zal worden uitgevoerd een maal erop de groene sstart knop wordt gedrukt.
 
-![example image](./images/vsc_27.png "An exemplary image")
 
-Ga vervolgens naar het platformio.ini-bestand van uw project en plak de bibliotheek-ID in dat bestand, zoals dit:
+```python
+# Complete project details at https://RandomNerdTutorials.com
 
-```cpp
-lib_deps = adafruit/Adafruit BME280 Library@^2.1.0
+from machine import Pin, I2C
+from time import sleep
+import BME280
+
+# ESP32 - Pin assignment
+i2c = I2C(scl=Pin(22), sda=Pin(21), freq=10000)
+
+while True:
+  bme = BME280.BME280(i2c=i2c)
+  temp = bme.temperature
+  hum = bme.humidity
+  pres = bme.pressure
+  # uncomment for temperature in Fahrenheit
+  #temp = (bme.read_temperature()/100) * (9/5) + 32
+  #temp = str(round(temp, 2)) + 'F'
+  print('Temperature: ', temp)
+  print('Humidity: ', hum)
+  print('Pressure: ', pres)
+
+  sleep(5)
+
 ```
-
-Als je meerdere bibliotheken nodig hebt, kun je hun naam scheiden door een komma of ze op verschillende regels zetten. Bijvoorbeeld:
-
-```cpp
-lib_deps = 
-arduino-libraries/Arduino_JSON @ 0.1.0 
-adafruit/Adafruit BME280 Library @ ^2.1.0 
-adafruit/Adafruit Unified Sensor @ ^1.1.4
-```
-
-PlatformIO heeft een ingebouwde krachtige bibliotheekmanager, waarmee u aangepaste afhankelijkheden per project kunt specificeren in het projectconfiguratiebestand platformio.ini met behulp van lib_deps. Dit zal PlatformIO vertellen om automatisch de bibliotheek en al zijn afhankelijkheden te downloaden wanneer u het configuratiebestand opslaat of wanneer u uw project compileert.
