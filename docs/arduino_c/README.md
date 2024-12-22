@@ -5,31 +5,31 @@ mathjax:
 
 
 
-# Cursus: Arduino C Programmeren voor Beginners
+# Cursus: python voor MicroPython
 
 ---
 
 ## Inleiding
 
-Deze cursus is ontworpen om beginners kennis te laten maken met de basisprincipes van programmeren in C voor de Arduino-microcontroller. De cursus begint met de basisconcepten van programmeren en gaat verder met meer geavanceerde technieken. Aan het einde van de cursus zul je in staat zijn om je eigen projecten te ontwikkelen en de Arduino-microcontroller effectief te gebruiken.
+Deze cursus is ontworpen om beginners kennis te laten maken met de basisprincipes van programmeren in python voor de MicroPython-microcontroller. De cursus begint met de basisconcepten van programmeren en gaat verder met meer geavanceerde technieken. Aan het einde van de cursus zul je in staat zijn om je eigen projecten te ontwikkelen en de MicroPython-microcontroller effectief te gebruiken.
 
 ---
 
-## 1: Introductie tot Arduino en de C Programmeertaal
+## 1: Introductie tot python
 
 
 ### 1.1 Variabelen en Datatypes
 - **Wat is een variabele?**
-  - Een variabele is een opslagplaats in het geheugen van de Arduino waarin je gegevens kunt opslaan die je programma gebruikt of bewerkt. Bijvoorbeeld: het opslaan van een getal dat een sensorwaarde vertegenwoordigt.
+  - Een variabele is een opslagplaats in het geheugen van de processor waarin je gegevens kunt opslaan die je programma gebruikt of bewerkt. Bijvoorbeeld: het opslaan van een getal dat een sensorwaarde vertegenwoordigt.
 - **Soorten variabelen:**
-  - `int`: Geheel getal, bijvoorbeeld `int ledPin = 13;`
-  - `float`: Kommagetal, bijvoorbeeld `float temperatuur = 23.5;`
-  - `char`: Enkel karakter, bijvoorbeeld `char letter = 'A';`
-  - `boolean`: Waar of niet waar (true of false), bijvoorbeeld `boolean isAan = true;`
+  - `int`: Geheel getal, bijvoorbeeld `ledPin = 13`
+  - `float`: Kommagetal, bijvoorbeeld `temperatuur = 23.5`
+  - `char`: Enkel karakter, bijvoorbeeld `letter = 'A'`
+  - `boolean`: Waar of niet waar (true of false), bijvoorbeeld `isAan = true`
 
 ### 1.2 Operators
-- **Toewijzingsoperator (`=`):** Gebruikt om een waarde toe te wijzen aan een variabele, bijvoorbeeld `int x = 10;`
-- **Wiskundige operators:** Optellen (`+`), aftrekken (`-`), vermenigvuldigen (`*`), delen (`/`), bijvoorbeeld `int resultaat = 5 + 3;`
+- **Toewijzingsoperator (`=`):** Gebruikt om een waarde toe te wijzen aan een variabele, bijvoorbeeld `x = 10`
+- **Wiskundige operators:** Optellen (`+`), aftrekken (`-`), vermenigvuldigen (`*`), delen (`/`), bijvoorbeeld `resultaat = 5 + 3`
 - **Vergelijkingsoperators:** Groter dan (`>`), kleiner dan (`<`), gelijk aan (`==`), bijvoorbeeld `if (x > 5)`
 
 ---
@@ -38,9 +38,10 @@ Deze cursus is ontworpen om beginners kennis te laten maken met de basisprincipe
 
 ### 2.1 Digitaal en Analoog Invoer/Output
 - Verschil tussen digitale en analoge signalen
-- Digitaal lezen en schrijven (`digitalRead()` en `digitalWrite()`)
+- Digitaal lezen en schrijven (`Pin.value()` en `Pin.value(True/False)`)
 - Analoog lezen en schrijven (`analogRead()` en `analogWrite()`)
 
+****************************vorige lijn is aangepast naar python
 
 ---
 
