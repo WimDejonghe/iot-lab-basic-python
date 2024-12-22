@@ -140,11 +140,7 @@ while True:
 ```
 De toestand van de drukknop wordt gelezen en wordt onmiddelijk toegekend aan de toestand van de digitale uitgang. 
 
-:::detail
-Wat zijn de bevindingen? Wanneer licht de LED op? Bij het drukken of niet drukken op de drukknop?
-:::
-
-
+> :bulb: **Tip:** Wat zijn de bevindingen? Wanneer licht de LED op? Bij het drukken of niet drukken op de drukknop? Welke conclusie kan hier worden getrokken?
 
 ::: tip
 De ESP32 bezit ook inwendig pull-up en pull-down weerstanden. Deze kunnen geactiveerd worden door pinMode(ingang, INPUT_PULLUP); Dit kan ook met PULLDOWN. Dan moet er uitwendig geen weerstand meer worden geplaatst.
