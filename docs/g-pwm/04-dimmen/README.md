@@ -5,10 +5,35 @@ mathjax:
 
 # PWM voorbeeld dimmen van een LED
 
-Het voorbeeldprogramma laat een led geleidelijk opdimmen en nadien neerdimmen en dit in een oneindige lus.
-De lijnen 1 tot en met drie geven meer info over het programma.
-Op de lijnen 5 tot en met 9 worden allerlei constanten weergegeven die verder in het programma worden gebruikt.
-De setup methode maakt alle instellingen van het PWM kanaal en wijst het kanaal toe aan een uitgangspin.
-In de loopmethode wordt er een for-lus voorzien die de duty-cycle geleidelijk verhoogt op lijn 19 t.e.m. 24 en op lijn 26 t.e.m. 31 wordt de for-lus voorzien die de led laat neerdimmen.
+Het voorbeeldprogramma laat de helderheid van een led regelen door middel van een potentiometer. 
 
-Hier nog verder aanvullen?????????????????????????
+```python
+from machine import Pin, ADC, PWM
+from time import sleep
+
+led1_pwm = PWM(Pin(21), freq=200)
+potentiometer = ADC(36)
+
+while True:
+    potWaarde = potentiometer.read() #leest 0-4095
+    print ('De analoge waarde =', potWaarde)
+    led1_pwm.duty(int(potWaarde/4)) #duty 0-1024
+```
+
+Een ander voorbeeld laat de LED in helderheid toenemen tot maximum en terug afnemen tot nul, en dit repetitief.
+
+```python
+from machine import Pin, ADC, PWM
+from time import sleep
+
+led1_pwm = PWM(Pin(21), freq=200)
+
+while True:
+    for x in range(1023):
+        led1_pwm.duty(x)
+        sleep(0.001)
+    for y in range(1023):
+        led1_pwm.duty(1023-y)
+        sleep(0.001)
+
+```
