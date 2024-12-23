@@ -156,11 +156,12 @@ In de labo's wordt altijd met een externe pullup weerstand gewerkt!!.
 
 <div style="background-color:darkgreen; text-align:left; vertical-align:left; padding:15px;">
 <p style="color:lightgreen; margin:10px">
-Opdracht: Digitale ingang blokgolf.
-<ul>
-<li>Als de drukknop niet is ingedrukt moet er een blokgolfspanning op een uitgang gegenereerd worden met een periode van 50Hz met een duty cycle van 50% (Ton = Toff).</li>
-<li>Als de drukknop is ingedrukt moet er een blokgolfspanning op een uitgang gegenereerd worden met een periode van 100Hz met een duty cycle van 50% (Ton = Toff).</li>
+Opdracht: Digitale ingang blokgolf. </p>
+<ul style="color:white">
+<li style="color:white">Als de drukknop niet is ingedrukt moet er een blokgolfspanning op een uitgang gegenereerd worden met een periode van 50Hz met een duty cycle van 50% (Ton = Toff).</li>
+<li style="color:white">Als de drukknop is ingedrukt moet er een blokgolfspanning op een uitgang gegenereerd worden met een periode van 100Hz met een duty cycle van 50% (Ton = Toff).</li>
 </ul>
+<p style="color:lightgreen; margin:10px">
 Visualiseer het resultaat met een oscilloscoop. Leg de werking uit van de oscilloscoop. Verklaar duidelijk wat Volt/div en Time/div is op basis van uw signalen. Zoek op wat duty cycle is en verklaar.
 </p>
 </div>
@@ -169,11 +170,12 @@ Visualiseer het resultaat met een oscilloscoop. Leg de werking uit van de oscill
 
 <div style="background-color:darkgreen; text-align:left; vertical-align:left; padding:15px;">
 <p style="color:lightgreen; margin:10px">
-Opdracht: Digitale ingang tellen.
-<ul>
-<li>Maak een systeem waarbij je het aantal keer telt dat de drukknop is ingedrukt.</li>
-<li>Als de drukknop 10 keer is ingedrukt moet er een led op een uitgang gaan branden.</li>
+Opdracht: Digitale ingang tellen. </p>
+<ul style="color:white">
+<li style="color:white">Maak een systeem waarbij je het aantal keer telt dat de drukknop is ingedrukt.</li>
+<li style="color:white">Als de drukknop 10 keer is ingedrukt moet er een led op een uitgang gaan branden.</li>
 </ul>
+<p style="color:lightgreen; margin:10px">
 Bij de elfde keer drukken gaat de LED weer uit en begint alles opnieuw, 10 keer LED 1 keer aan, .... Leg duidelijk uit hoe een flankdetectie werkt en wat dender is!
 </p>
 </div>
