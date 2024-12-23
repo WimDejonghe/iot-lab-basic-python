@@ -5,7 +5,7 @@ mathjax:
 
 # PWM instructies (software)
 
-PWM can be enabled on all output-enabled pins. The base frequency can range from 1Hz to 40MHz but there is a tradeoff; as the base frequency increases the duty resolution decreases. See LED Control for more details.Bijvoorbeeld:
+PWM kan worden ingeschakeld op alle uitgangspinnen. De basisfrequentie kan variëren van 1 Hz tot 40 MHz, maar er is een afweging; naarmate de basisfrequentie toeneemt, neemt de duty-resolutie af. Zie LED-bediening voor meer details. Bijvoorbeeld:
 
 ```python
 from machine import Pin, PWM
@@ -38,4 +38,4 @@ print(pwm2)                               # view PWM settings
 | Total PWM channels (Pins, duties) (groups * channels)  | 16   |
 
 
-A maximum number of PWM channels (Pins) are available on the ESP32 - 16 channels, but only 8 different PWM frequencies are available, the remaining 8 channels must have the same frequency. On the other hand, 16 independent PWM duty cycles are possible at the same frequency.
+Op de ESP32 is een maximaal aantal PWM-kanalen (Pins) beschikbaar - 16 kanalen, maar er zijn slechts 8 verschillende PWM-frequenties beschikbaar, de overige 8 kanalen moeten dezelfde frequentie hebben. Aan de andere kant zijn er 16 onafhankelijke PWM-werkcycli mogelijk op dezelfde frequentie.
