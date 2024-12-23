@@ -98,3 +98,13 @@ In de volgende figuur is een potentiometer aangesloten op de analoge ingang A0 v
 ::: warning
 Let op de waarde van de potentiometer. Neem deze niet te klein!! Ergens tussen 4k7 en 15k is ok. Weet je ook waarom?
 :::
+
+> :bulb: **Andere methoden:** Er zijn nog enkele andere methoden die kunnen worden gebruikt bij het lezen van een analoge ingang.
+
+```python
+from machine import ADC
+
+adc = ADC(pin)        # create an ADC object acting on a pin
+val = adc.read_u16()  # read a raw analog value in the range 0-65535
+val = adc.read_uv()   # read an analog value in microvolts
+```

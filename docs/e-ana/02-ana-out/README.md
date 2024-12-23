@@ -5,7 +5,7 @@ mathjax:
 
 # Analoge uitgangen
 
-In dit hoofdstuk wordt uitgelegd hoe een analoge uitgang moet aangesloten worden bij de Adfruit Huzah32 feather.
+In dit hoofdstuk wordt uitgelegd hoe een analoge uitgang moet aangesloten worden bij de Adafruit Huzah32 feather.
 
 ## Analoge uitgangspinnen van de ESP32 feather van Adafruit
 
@@ -50,18 +50,19 @@ Voor de ESP32 controller is dit:
 
 $$Uo = 3,3V.\frac{D} {2^8}=3,3V.\frac{D} {256} = 12,89mV.D$$
 
-## dacWrite
+## dac.write
 
-Bij de analoge uitgang moet er geen IO-pin ingesteld worden. Er moet enkel gebruik gemaakt worden van de methode dacWrite waaraan je twee parameters moet aan meegeven.
-De eerste parameter is welke uitgangspin je wil gebruiken. Dit kan DAC1 of DAC2 zijn.
-De tweede parameter is de spanning die je er op wil plaatsen. Dit is een getal tussen 0 en 255. 0 komt overeen met 0V en 255 met 3,3V.
+Bij de analoge uitgang moet er geen IO-pin ingesteld worden. Er moet enkel gebruik gemaakt worden van de methode dac.write() waaraan je een parameter moet meegeven.
+
+De parameter is de spanning die je er op wil plaatsen. Dit is een getal tussen 0 en 255. 0 komt overeen met 0V en 255 met 3,3V.
 In de volgende code wordt de waarde 255 wat overeenkomt met 3,3V op de analoge uitgang DAC1 geplaatst.
 
-```cpp
-void loop()
-{
-  dacWrite(DAC1, 255);
-}
+```python
+from machine import DAC, Pin
+
+dac = DAC(Pin(25))  # create an DAC object acting on a pin
+dac.write(128)      # set a raw analog value in the range 0-255, 50% now
+
 ```
 
 ## Hardware
@@ -72,17 +73,7 @@ Het schema van de analoge uitgang is hier weergegeven. Tussen de uitgang en de G
 
 ## Software
 
-Het programma plaatst een blokgolfspanning op de twee analoge uitgangen van het bord. De amplitude is 3,3V en de frequentie is 250mHz.
-Op lijn 14 wordt er een integer-variabele gedeclareerd en wordt er de waarde 255 aan toegekend. 255 staat voor de maximum spanning en is hier 3,3V (=voedingsspanning).
-Op lijn 15 wordt de variabele met de waarde 255 naar de analoge uitgang 1 geschreven.
-Op lijn 16 wordt de variabele met de waarde 255 naar de analoge uitgang 2 geschreven.
-Op lijn 17 wordt er twee seconden gewacht. Dit wil zeggen dat er twee seconden wordt gewacht voordat er een wijziging gebeurt aan de analoge uitgangen.
-Op lijn 19 wordt de variabele intWaarde gevuld met 0 wat overeenkomt met 0V.
-Op lijn 20 en 21 wordt de 0V op de twee analoge uitgangen geplaatst.
-Op lijn 22 wordt er terug twee seconden gewacht.
-De loop methode wordt in een oneindige lus uitgevoerd en na lijn 22 wordt er terug gestart met lijn 14.
-
-![example image](./images/code.png "Voorbeeldprogramma analoge uitgangsspanning.")
+Door FOR-loops te gebruiken in een oneindige LOOP kunnen repetitieve spanningen worden opgewekt.
 
 ***
 <div style="background-color:darkgreen; text-align:left; vertical-align:left; padding:15px;">
