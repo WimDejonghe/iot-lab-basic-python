@@ -5,56 +5,37 @@ mathjax:
 
 # PWM instructies (software)
 
-Er zijn twee manieren om een PWM signaal te genereren met een vast frequentie een instelbare duty-cycle. Hierbij worden twee verschillende statements gebruikt.
-> - analogWrite(PIN, 255); //value range 0-255 so 255=100%
-> - ledcWrite(channel, dutycycle)
+PWM can be enabled on all output-enabled pins. The base frequency can range from 1Hz to 40MHz but there is a tradeoff; as the base frequency increases the duty resolution decreases. See LED Control for more details.Bijvoorbeeld:
 
-We bespreken hier enkel de tweede methode.
+```python
+from machine import Pin, PWM
 
-De EPS32 heeft 16 onafhankelijke kanalen die ingesteld kunnen worden om PWM signalen te genereren met verschillende eigenschappen.
+pwm0 = PWM(Pin(0), freq=5000, duty_u16=32768) # create PWM object from a pin
+freq = pwm0.freq()         # get current frequency
+pwm0.freq(1000)            # set PWM frequency from 1Hz to 40MHz
 
-De verschillende stappen die je moet doorlopen worden zijn:
-> - PWM-kanaal kiezen: <br> Kies een PWM kanaal om te gebruiken. Er zijn er 16 met een nummer van 0 tot en met 15. Om het gemakkelijk te maken, gebruik een constante en geef deze een duidelijke naam. Bijvoorbeeld:
-```cpp
-#define LED_KANAAL 2
-```
-> - PWM-frequentie bepalen: <br> Vervolgens stel je de frequentie in van het PWM signaal. Voor een LED te dimmen is een frequentie van 500Hz zeker voldoende. Om het gemakkelijk te maken gebruik een constante die een duidelijke naam krijgt. Bijvoorbeeld:
-```cpp
-#define LED_FREQUENTIE 500
-```
-> - PWM-resolutie kiezen: <br> Stel dan de resolutie van de duty-cycle (=δ) van het PWM signaal in. Dit kan je instellen met een resolutie van 1 tot 16 bits. Voor het dimmen van een LED is 8 bit voldoende. Dit wil zeggen dat er 2<sup>8</sup> = 256 verschillende stappen zijn. Om het gemakkelijk te maken maak je gebruik van een constante die je een duidelijke naam geeft. Bijvoorbeeld:
-```cpp
-#define LED_RESOLUTIE 8
-```
-> - PWM-frequentie en -resolutie aan het kanaal toewijzen: <br> De gekozen frequentie en de resolutie moeten aan het gekozen kanaal toegewezen worden. Daarvoor gebruik je de methode:
+duty = pwm0.duty()         # get current duty cycle, range 0-1023 (default 512, 50%)
+pwm0.duty(256)             # set duty cycle from 0 to 1023 as a ratio duty/1023, (now 25%)
 
-```cpp
-ledcSetup(channel, freq, resolution_bits);
+duty_u16 = pwm0.duty_u16() # get current duty cycle, range 0-65535
+pwm0.duty_u16(2**16*3//4)  # set duty cycle from 0 to 65535 as a ratio duty_u16/65535, (now 75%)
+
+duty_ns = pwm0.duty_ns()   # get current pulse width in ns
+pwm0.duty_ns(250_000)      # set pulse width in nanoseconds from 0 to 1_000_000_000/freq, (now 25%)
+
+pwm0.deinit()              # turn off PWM on the pin
+
+pwm2 = PWM(Pin(2), freq=20000, duty=512)  # create and configure in one go
+print(pwm2)                               # view PWM settings
 ```
 
-De eerste parameter is het te gebruiken kanaal. De tweede parameter de frequentie en de laatste parameter de resolutie. In het voorbeeld van de led wordt dit:
+| Hardware specification | ESP32 |
+| ----------- |:------------:|
+| Number of groups (speed modes)        | 2    | 
+| Number of timers per group    | 4           | 
+| Number of channels per group  | 8   |
+| Different PWM frequencies (groups * timers)  | 8   |
+| Total PWM channels (Pins, duties) (groups * channels)  | 16   |
 
-```cpp
-ledcSetup(LED_KANAAL, LED_FREQUENTIE, LED_RESOLUTIE);
-```
 
-> - Toewijzen uitgangspin aan het kanaal: <br> Als voorlaatste stel je in aan welke GPIO-pin je wil gebruiken om het PWM signaal naar buiten te brengen. Dit gebeurt met de methode:
-```cpp
-ledcAttachPin(pin, channel);
-```
-De eerste parameter is de GPIO uitgangspin waarop het PWM signaal komt te staan en de tweede parameter is het kanaal die je er aan toewijst. Bij het voorbeeld van de LED is dit:
-
-```cpp
-#define LED 13
-ledcAttachPin(LED, channel);
-```
-> - Duty-cycle van het kanaal instellen: <br> Om vervolgens de duty-cycle te wijzigen wordt volgende methode gebruikt.
-```cpp
-uint32_t duty = 6;
-ledcWrite(channel, duty);
-```
-De eerste parameter is het kanaal waarvan je de duty-cycle wil instellen. De volgende parameter is de duty-cycle. De waarde is afhankelijk van de ingestelde resolutie. Bij het voorbeeld van de led is de resolutie 8 bit. Dit wil zeggen dat er 2<sup>8</sup> =256 mogelijkheden zijn. De minimumwaarde is 0 en de maximumwaarde is 255.
-```cpp
-uint32_t duty_cycle = 127;
-ledcWrite(LED_KANAAL, duty_cycle);
-```
+A maximum number of PWM channels (Pins) are available on the ESP32 - 16 channels, but only 8 different PWM frequencies are available, the remaining 8 channels must have the same frequency. On the other hand, 16 independent PWM duty cycles are possible at the same frequency.

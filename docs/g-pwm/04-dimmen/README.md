@@ -11,4 +11,4 @@ Op de lijnen 5 tot en met 9 worden allerlei constanten weergegeven die verder in
 De setup methode maakt alle instellingen van het PWM kanaal en wijst het kanaal toe aan een uitgangspin.
 In de loopmethode wordt er een for-lus voorzien die de duty-cycle geleidelijk verhoogt op lijn 19 t.e.m. 24 en op lijn 26 t.e.m. 31 wordt de for-lus voorzien die de led laat neerdimmen.
 
-![example image](./images/code.png "Een Led dimmen door gebruik te maken van PWM.")
+Hier nog verder aanvullen?????????????????????????

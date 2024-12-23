@@ -9,7 +9,7 @@ Om het programmeren wat eenvoudiger te maken gaan we gebruik maken van een ESP32
 
 ![example image](./images/shield1.png "De ESP32 shield.")
 
-De shield heeft 4 drukknoppen, 8 leds, een trimmer en een connector om SPI- en I2C componenten aan te sluiten. In de volgende tabel is weergegeven wat de naam en op welke IO-pin deze zijn aangesloten. De connector met de SPI en I²C aansluitingen zijn niet weergegeven maar deze kan een goede technicus uit het schema van de volgende figuur halen.
+De shield heeft 4 drukknoppen, 8 leds, een trimmer en een connector om SPI- en I²C componenten aan te sluiten. In de volgende tabel is weergegeven wat de naam en op welke IO-pin deze zijn aangesloten. De connector met de SPI en I²C aansluitingen zijn niet weergegeven maar deze kan een goede technicus uit het schema van de volgende figuur halen.
 
 
 | Naam | IO-pin |
@@ -30,61 +30,46 @@ De shield heeft 4 drukknoppen, 8 leds, een trimmer en een connector om SPI- en I
 
 ![example image](./images/schema.png "De ESP32 shield.")
 
-## Voorbeeldprogramma analoge ingang
-
-![example image](./images/analog1.png "Voorbeeldprogramma van een analoge ingang.")
-
 ## Testen van de ESP32 shield voor de Adafruit Huzzah32 feather
 
 Onderstaande code kan men gebruiken om de shield te testen.
 
-```cpp
-#include <Arduino.h>
-#define led1 21
-#define led2 14
-#define led3 32
-#define led4 15
-#define led5 33
-#define led6 27
-#define led7 12
-#define led8 13
-#define sw1 39
-#define sw2 34
-#define sw3 25
-#define sw4 26
-#define potentiometer 36
-int potWaarde = 0;
-void setup() {
-  // put your setup code here, to run once:
-  Serial.begin(115200); // open the serial port at 115200 bps:
-  pinMode(led1, OUTPUT);
-  pinMode(led2, OUTPUT);
-  pinMode(led3, OUTPUT);
-  pinMode(led4, OUTPUT);
-  pinMode(led5, OUTPUT);
-  pinMode(led6, OUTPUT);
-  pinMode(led7, OUTPUT);
-  pinMode(led8, OUTPUT);
-  pinMode(sw1, INPUT);
-  pinMode(sw2, INPUT);
-  pinMode(sw3, INPUT);
-  pinMode(sw4, INPUT);
-}
-void loop() {
-  // put your main code here, to run repeatedly:
-  digitalWrite(led1, !digitalRead(sw1));
-  digitalWrite(led2, !digitalRead(sw2));
-  digitalWrite(led3, !digitalRead(sw3));
-  digitalWrite(led4, !digitalRead(sw4));
-  digitalWrite(led5, digitalRead(sw1));
-  digitalWrite(led6, digitalRead(sw2));
-  digitalWrite(led7, digitalRead(sw3));
-  digitalWrite(led8, digitalRead(sw4));
+```python
+from machine import Pin, ADC
+from time import sleep
+led1 = Pin(21, Pin.OUT)
+led2 = Pin(14, Pin.OUT)
+led3 = Pin(32, Pin.OUT)
+led4 = Pin(15, Pin.OUT)
+led5 = Pin(33, Pin.OUT)
+led6 = Pin(27, Pin.OUT)
+led7 = Pin(12, Pin.OUT)
+led8 = Pin(13, Pin.OUT)
 
-  potWaarde = analogRead(potentiometer);
-  Serial.print("De potentiometer waarde = ");
-  Serial.println(potWaarde, DEC);
-}
+sw1 = Pin(39, Pin.IN)
+sw2 = Pin(34, Pin.IN)
+sw3 = Pin(25, Pin.IN)
+sw4 = Pin(26, Pin.IN)
+
+potentiometer = ADC(36)
+potWaarde = 0
+
+while True:
+  #put your main code here, to run repeatedly:
+  led1.value( not sw1.value())
+  led2.value( not sw2.value())
+  led3.value( not sw3.value())
+  led4.value( not sw4.value())
+  led5.value(sw1.value())
+  led6.value(sw2.value())
+  led7.value(sw3.value())
+  led8.value(sw4.value())
+  
+
+  potWaarde = potentiometer.read()
+  print("De potentiometer waarde = ", potWaarde)
+ 
+
 ```
 
 <div style="background-color:darkgreen; text-align:left; vertical-align:left; padding:15px;">
@@ -155,26 +140,26 @@ Maak gebruik van de ESP32-shield.
 Bij bepaalde opdrachten kan het interessant zijn dat een unsigned integer 0-255 (een char type dus) moet omgezet worden naar 8bits. Ziehier een methode die dit voor u kan doen.
 :::
 
-```cpp
-void ToonLEDS (unsigned char data)
-{           
-if (data/128%2 != 0)            { digitalWrite(led8, HIGH); }        //Set   LED8   
-else    { digitalWrite(led8, LOW);}        //Reset LED8   
-if (data/64%2 != 0)            { digitalWrite(led7, HIGH); }         //Set   LED7   
-else    { digitalWrite(led7, LOW);}     //Reset LED7   
-if (data/32%2 != 0)            { digitalWrite(led6, HIGH);}           //Set   LED6   
-else    { digitalWrite(led6, LOW);}      //Reset LED6   
-if (data/16%2 != 0)            { digitalWrite(led5, HIGH);}         //Set   LED5   
-else    { digitalWrite(led5, LOW);}     //Reset LED5   
-if (data/8%2 != 0)            { digitalWrite(led4, HIGH);}           //Set   LED4   
-else    { digitalWrite(led4, LOW);}      //Reset LED4   
-if (data/4%2 != 0)            { digitalWrite(led3, HIGH);}           //Set   LED3   
-else    { digitalWrite(led3, LOW);}      //Reset LED3   
-if (data/2%2 != 0)            { digitalWrite(led2, HIGH);}           //Set   LED2   
-else    { digitalWrite(led2, LOW);}      //Reset LED2   
-if (data%2 != 0)            { digitalWrite(led1, HIGH);}           //Set   LED1   
-else    { digitalWrite(led1, LOW);}      //Reset LED1
-}
+```python
+def ToonLEDS (data):
+           
+  if (data/128%2 != 0): led8.value(1) #Set LED8   
+  else: led8.value(0)        #Reset LED8   
+  if (data/64%2 != 0): led7.value(1) #Set LED7   
+  else: led7.value(0) #Reset LED7   
+  if (data/32%2 != 0): led6.value(1) #Set   LED6   
+  else: led6.value(0) #Reset LED6   
+  if (data/16%2 != 0): led5.value(1) #Set   LED5   
+  else: led5.value(0) #Reset LED5   
+  if (data/8%2 != 0): led4.value(1) #Set   LED4   
+  else: led4.value(0) #Reset LED4   
+  if (data/4%2 != 0): led3.value(1) #Set   LED3   
+  else: led3.value(0) #Reset LED3   
+  if (data/2%2 != 0): led2.value(1) #Set   LED2   
+  else: led2.value(0) #Reset LED2   
+  if (data%2 != 0): led1.value(1) #Set   LED1   
+  else: led1.value(0) #Reset LED1
+
 ```
 
 <div style="background-color:darkgreen; text-align:left; vertical-align:left; padding:15px;">
