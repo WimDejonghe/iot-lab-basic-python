@@ -71,7 +71,7 @@ module.exports = {
         ]
       },
       {
-        text: 'Starten met C',
+        text: 'Starten met MicroPython',
         children: [
          
           '/arduino_c/README.md',

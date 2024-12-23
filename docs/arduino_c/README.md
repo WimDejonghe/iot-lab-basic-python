@@ -26,6 +26,7 @@ Deze cursus is ontworpen om beginners kennis te laten maken met de basisprincipe
   - `float`: Kommagetal, bijvoorbeeld `temperatuur = 23.5`
   - `char`: Enkel karakter, bijvoorbeeld `letter = 'A'`
   - `boolean`: Waar of niet waar (true of false), bijvoorbeeld `isAan = true`
+  - `string`: Is een lijst (array) van char's `school = 'VIVES'`
 
 ### 1.2 Operators
 - **Toewijzingsoperator (`=`):** Gebruikt om een waarde toe te wijzen aan een variabele, bijvoorbeeld `x = 10`
@@ -39,9 +40,8 @@ Deze cursus is ontworpen om beginners kennis te laten maken met de basisprincipe
 ### 2.1 Digitaal en Analoog Invoer/Output
 - Verschil tussen digitale en analoge signalen
 - Digitaal lezen en schrijven (`Pin.value()` en `Pin.value(True/False)`)
-- Analoog lezen en schrijven (`analogRead()` en `analogWrite()`)
+- Analoog lezen en schrijven (`adc.read()` en `dac.write(INTEGER)`)
 
-****************************vorige lijn is aangepast naar python
 
 ---
 
@@ -52,45 +52,37 @@ Deze cursus is ontworpen om beginners kennis te laten maken met de basisprincipe
 #### Selecties (Voorwaardelijke logica)
 - **`if`-statement:**
   - Een `if`-statement voert code uit als een bepaalde voorwaarde waar is. Bijvoorbeeld:
-    ```c
-    if (temperatuur > 25) {
-        digitalWrite(ledPin, HIGH); // Zet LED aan als temperatuur groter is dan 25 graden
-    }
+    ```python
+    if (temperatuur > 25):
+        Pin.value(HIGH) # Zet LED aan als temperatuur groter is dan 25 graden
+    
     ```
 - **`else if` en `else`:**
   - Gebruik `else if` en `else` om alternatieve acties te definiëren als de eerste voorwaarde niet waar is.
-    ```c
-    if (temperatuur > 25) {
-        digitalWrite(ledPin, HIGH);
-    } else {
-        digitalWrite(ledPin, LOW);
-    }
+    ```python
+    if (temperatuur > 25):
+        Pin.value(HIGH)
+    else:
+        Pin.value(LOW)
+    
     ```
 
 ### 3.2 Iteraties (Lussen)
 - **`for`-lus:**
   - Wordt gebruikt om een blok code meerdere keren uit te voeren, met een controle over het aantal herhalingen. Bijvoorbeeld:
-    ```c
-    for (int i = 0; i < 10; i++) {
-        digitalWrite(ledPin, HIGH);
-        delay(500);
-        digitalWrite(ledPin, LOW);
-        delay(500);
-    }
+    ```python
+    for x in range(10):
+        Pin.value(HIGH)
+        sleep(0.5)
+        Pin.value(LOW)
+        sleep(0.5)    
     ```
 - **`while`-lus:**
   - Voert code uit zolang een bepaalde voorwaarde waar is. Bijvoorbeeld:
-    ```c
-    while (digitalRead(knopPin) == LOW) {
-        digitalWrite(ledPin, HIGH);
-    }
-    ```
-- **`do...while`-lus:**
-  - Vergelijkbaar met de `while`-lus, maar de code wordt minstens één keer uitgevoerd, ongeacht de conditie:
-    ```c
-    do {
-        digitalWrite(ledPin, HIGH);
-    } while (digitalRead(knopPin) == LOW);
+    ```python
+    while (Pin_drukknop.value() == LOW):
+        Pin_LED.value(HIGH)
+    Pin_LED.value(LOW)
     ```
 
 ### 3.3 Functies
@@ -98,26 +90,33 @@ Deze cursus is ontworpen om beginners kennis te laten maken met de basisprincipe
   - Functies zijn herbruikbare blokken code die een specifieke taak uitvoeren. Ze maken je code overzichtelijker en makkelijker te onderhouden.
 - **Functies definiëren en oproepen:**
   - Een eenvoudige functie:
-    ```c
-    void zetLEDaan() {
-        digitalWrite(ledPin, HIGH);
-    }
+    ```python
+    def zetLEDaan():
+        Pin.value(HIGH)
+    
     ```
 
 - **Overdracht van parameters en het teruggeven van waarden:**
   - Een functie met parameters:
-    ```c
-    void knipperLED(int keer) {
-        for (int i = 0; i < keer; i++) {
-            digitalWrite(ledPin, HIGH);
-            delay(500);
-            digitalWrite(ledPin, LOW);
-            delay(500);
-        }
-    }
+    ```python
+    def knipperLED(aantalkeer): 
+        for x in range(aantalkeer):
+          Pin.value(HIGH)
+          sleep(0.5)
+          Pin.value(LOW)
+          sleep(0.5)    
+        
+    
     ```
-
+  - Een functie met parameters en teruggeef waarde:
+    ```python
+    def optelling(getal1, getal2): 
+        som=getal1+getal2
+        return (som) 
+        
+    
+    ```
 
 ---
 
-Deze cursus biedt een stevige basis om door te stromen naar meer geavanceerde Arduino-projecten en om de vaardigheden die je leert toe te passen in de echte wereld. Veel succes en vooral veel plezier met het ontdekken van de wereld van Arduino en elektronica!
+Deze cursus biedt een stevige basis om door te stromen naar meer geavanceerde projecten en om de vaardigheden die je leert toe te passen in de echte wereld. Veel succes en vooral veel plezier met het ontdekken van de wereld van elektronica!
