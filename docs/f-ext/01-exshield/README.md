@@ -137,28 +137,29 @@ Maak gebruik van de ESP32-shield.
 ***
 
 ::: tip
-Bij bepaalde opdrachten kan het interessant zijn dat een unsigned integer 0-255 (een char type dus) moet omgezet worden naar 8bits. Ziehier een methode die dit voor u kan doen.
+Bij bepaalde opdrachten kan het interessant zijn dat een unsigned integer 0-255 (een char type dus), data, moet omgezet worden naar 8bits. Ziehier een methode die dit voor u kan doen.
 :::
 
 ```python
 def ToonLEDS (data):
-           
-  if (data/128%2 != 0): led8.value(1) #Set LED8   
-  else: led8.value(0)        #Reset LED8   
-  if (data/64%2 != 0): led7.value(1) #Set LED7   
-  else: led7.value(0) #Reset LED7   
-  if (data/32%2 != 0): led6.value(1) #Set   LED6   
-  else: led6.value(0) #Reset LED6   
-  if (data/16%2 != 0): led5.value(1) #Set   LED5   
-  else: led5.value(0) #Reset LED5   
-  if (data/8%2 != 0): led4.value(1) #Set   LED4   
-  else: led4.value(0) #Reset LED4   
-  if (data/4%2 != 0): led3.value(1) #Set   LED3   
-  else: led3.value(0) #Reset LED3   
-  if (data/2%2 != 0): led2.value(1) #Set   LED2   
-  else: led2.value(0) #Reset LED2   
-  if (data%2 != 0): led1.value(1) #Set   LED1   
-  else: led1.value(0) #Reset LED1
+    #print(bin(data)) zou een andere manier zijn
+    #is een uitdaging voor de student
+    if (int(data/128)%2 != 0): led8.value(1) #Set LED8   
+    else: led8.value(0) #Reset LED8   
+    if (int(data/64)%2 != 0): led7.value(1) #Set LED7   
+    else: led7.value(0) #Reset LED7   
+    if (int(data/32)%2 != 0): led6.value(1) #Set LED6   
+    else: led6.value(0) #Reset LED6   
+    if (int(data/16)%2 != 0): led5.value(1) #Set LED5   
+    else: led5.value(0) #Reset LED5   
+    if (int(data/8)%2 != 0): led4.value(1) #Set LED4   
+    else: led4.value(0) #Reset LED4   
+    if (int(data/4)%2 != 0): led3.value(1) #Set LED3   
+    else: led3.value(0) #Reset LED3   
+    if (int(data/2)%2 != 0): led2.value(1) #Set LED2   
+    else: led2.value(0) #Reset LED2   
+    if (data%2 != 0): led1.value(1) #Set LED1   
+    else: led1.value(0) #Reset LED1
 
 ```
 
