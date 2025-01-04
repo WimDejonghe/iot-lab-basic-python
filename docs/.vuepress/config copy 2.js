@@ -108,19 +108,10 @@ module.exports = {
                    
         ]
       },
-      {
-        text: 'Logische poorten',
-        children: [
-          '/i-logic/README.md',
-          
-          
-                   
-        ]
-      },
      
     ],
     sidebarDepth: 1,
-    repo: 'WimDejonghe/iot-lab-basic-python',
+    repo: 'WimDejonghe/iot-lab-basic',
     docsDir: 'docs',
     docsBranch: 'master'
   }),
