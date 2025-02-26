@@ -70,7 +70,7 @@ Daarom stelt het Nyquist-bemonsteringscriterium dat de bemonsteringsfrequentie t
 
 ![example image](./images/adc3.png "Het sampelen van een analoog signaal.")
 
-## AnalogRead
+## ADC Read
 
 Om een analoge ingang te gebruiken hoeft men niet zoals een digitale in -of uitgang te zeggen hoe men de pin wil gebruiken. Om een analoge spanning om te zetten naar een integer moet men enkel de methode ADC.read() gebruiken.
 In volgende code wordt een variabele met de naam adc gemaakt op basis van de klasse ADC binnen de Machine library van MicoPython. Met ADC.read() wordt de spanning op de pin waar de POTENTIOMETER (=A0) mee verbonden is op de ESP32 die zich bevindt tussen 0V en 3,3V omgezet wordt naar een getal tussen 0 en 4095.
@@ -107,4 +107,27 @@ from machine import ADC
 adc = ADC(pin)        # create an ADC object acting on a pin
 val = adc.read_u16()  # read a raw analog value in the range 0-65535
 val = adc.read_uv()   # read an analog value in microvolts
+```
+
+::: warning
+Wanneer aan de potentiometer wordt gedraaid (van het ene uiterste naar het andere), zorgt dit voor een spanningsvariatie van 0V geleidelijkaan tot 3,3V. Dit zou op de ADC moeten worden verwerkt met een getal variërend van 0 tot 4095 (ADC bezit een resolutie van 12bit). Echter kan een verzwakking (attenuation) worden ingesteld op de ADC. Hiermee worden de uiterste limieten van de spanning ingesteld. Zo kan een de ADC ingesteld worden dat de maximum spanning niet 3,3V is maar 1,2V (resulteert dan in een waarde van 4095).
+:::
+
+Bij de potentiometer op de shield van de ESP32 willen we een bereik hebben van 0V-3,3V (0-4095).
+Dit betekent dat we een spanning willen lezen van 0 tot 3,3V. Dit komt overeen met het instellen van de dempingsverhouding op 11dB. Daarvoor gebruiken we de `atten()`-methode en geven als argument mee: `ADC.ATTN_11DB`.
+
+De `atten()`-methode kan de volgende argumenten aannemen:
+
+- `ADC.ATTN_0DB` — de volledige bereikspanning: 1,2V  
+- `ADC.ATTN_2_5DB` — de volledige bereikspanning: 1,5V  
+- `ADC.ATTN_6DB` — de volledige bereikspanning: 2,0V  
+- `ADC.ATTN_11DB` — de volledige bereikspanning: 3,3V  
+
+```python
+from machine import ADC
+
+adc = ADC(pin)        # create an ADC object acting on a pin
+adc.atten(ADC.ATTN_11DB)
+val = adc.read()  
+
 ```
