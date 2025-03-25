@@ -12,7 +12,7 @@ from machine import Pin, ADC, PWM
 from time import sleep
 
 led1_pwm = PWM(Pin(21), freq=200)
-potentiometer = ADC(36)
+potentiometer = ADC(Pin(36), atten=ADC.ATTN_11DB)
 
 while True:
     potWaarde = potentiometer.read() #leest 0-4095
