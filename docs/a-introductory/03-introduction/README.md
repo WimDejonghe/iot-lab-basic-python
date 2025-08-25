@@ -1,6 +1,6 @@
 # Thonny IDE overview
 
-Op dit ogenblik is de Thonyy IDE geïnstalleerd op de computer. Een ESP32 is via een USB kabel verbonden met de computer en de ESP32 bezit de MicroPython firmware.
+Op dit ogenblik is de Thonny IDE geïnstalleerd op de computer. Een ESP32 is via een USB kabel verbonden met de computer en de ESP32 bezit de MicroPython firmware.
 
 Open Thonny IDE. Er zijn twee verschillende secties zichtbaar: de **editor** en de **MicroPython Shell/Terminal**
 

@@ -23,7 +23,7 @@ while True:
 Uitleg code: 
 > - om een pin als GPIO te gebruiken van de ESP32 moeten specifieke eigenschappen van de ESP32 worden geladen. Dit gebeurt door binnen de library MACHINE de PIN eigenschappen te laden.
 > - idem voor het gebruik van een WACHT-insctructie (SLEEP) die moet geladen worden vanuit de TIME library.
-> - led is een variabele van het type PIN en krijgt de eigenschappen van een nummer (Pin nummer van de microcontroller), en dat die piin een uitgang is (om een LED aan te sturen).
+> - led is een variabele van het type PIN en krijgt de eigenschappen van een nummer (Pin nummer van de microcontroller), en dat die pin een uitgang is (om een LED aan te sturen).
 > - in de oneindige lus (while True), wordt telkens de toestand van die uitgang gelezen door de ESP32 en wordt het inverse als value geschreven naar die specifieke pin.
 > - daarna wordt er een tijdje gewacht (sleep) met een eigenschap van 0,5 seconden.
 
@@ -34,7 +34,7 @@ Bewaar deze code in een python bestand (naam van het bestand maakt niet uit, let
 
 ![example image](./images/vsc_14.png "An exemplary image")
 
-Geef het project een steed een goeie logische naam: vb. : "Blink_LED". 
+Geef het project steeds een goeie logische naam: vb. : "Blink_LED". 
 
 Let op de locatie van uw project binnen de mappenstructuur van uw computer. Gebruik hiervoor logische structuren zodat je later uw projecten kan terug vinden!!
 

@@ -5,7 +5,7 @@ mathjax:
 
 # Werking
 
-PWM is de afkorting van Pulse With Modulation. In het Nederlands heet dit Puls breedte modulatie of beter puls breedte sturing.
+PWM is de afkorting van Pulse With Modulation. In het Nederlands heet dit puls breedte modulatie of beter puls breedte sturing.
 
 
 Puls breedte modulatie is een eenvoudige methode om op een digitale uitgang een blokgolfspanning te voorzien om zo een semi-analoge spanning op de uitgang te krijgen.
@@ -31,7 +31,7 @@ Men noemt de duty-cycle de verhouding van de aan-tijd van het signaal ten opzich
 
 $$\delta = \frac{T_{on}} {T}.100\%$$
 
-Als je de duty-cycle vermenigvuldigd met de voedingsspanning dan bekom je de gemiddelde uitgangsspanning.
+Als je de duty-cycle vermenigvuldigt met de voedingsspanning dan bekom je de gemiddelde uitgangsspanning.
 
 $$Uo_{gem} = \delta.Uv$$
 

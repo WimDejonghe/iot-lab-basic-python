@@ -37,7 +37,7 @@ Druk RMT op dit bestand en lies voor **Upload to /**
 
 ![example image](./images/vsc_6.png "An exemplary image")
 
-De library staat op het MicroPython device kan worden aangesproken. Dit kan zeker ook vanaf een python bestand die op de computer staat en die zal worden uitgevoerd een maal erop de groene sstart knop wordt gedrukt.
+De library staat op het MicroPython device en kan nu worden aangesproken. Dit kan zeker ook vanaf een python bestand die op de computer staat en die zal worden uitgevoerd eenmaal er op de groene start knop wordt gedrukt.
 
 
 ```python

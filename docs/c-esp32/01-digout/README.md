@@ -48,7 +48,7 @@ Enkel de pinnen met de gele labels zoals in bovenste figuur kunnen als digitale 
 
 ***
 
-Het ontwikkelbord heeft 2 leds aanwezig waarbij de led boven de USB-connecter en naast de aansluiting van de battreij verbonden is met IO-pin 13. Deze kunnen we aansturen van uit de code en kan ingesteld worden als uitgang (1).
+Het ontwikkelbord heeft 2 leds aanwezig waarbij de led boven de USB-connector en naast de aansluiting van de batterij verbonden is met IO-pin 13. Deze kunnen we aansturen van uit de code en kan ingesteld worden als uitgang (1).
 De led onder de USB-connector (2) knippert vanaf dat er voedingsspanning aanwezig is.
 
 ![example image](./images/onboardled.png "De Leds op de ESP32 Huzzah")
@@ -72,7 +72,7 @@ led_onboard = Pin(13, Pin.OUT)
 
 ## Schrijven naar een digitale output
 
-Een digitale uitgang kan twee waarden aannemen. In de volgende figuur zijn een aantal mogelijkheden om een digitale uitgang een waarde de te geven.
+Een digitale uitgang kan twee waarden aannemen. In de volgende figuur zijn een aantal mogelijkheden om een digitale uitgang een waarde te geven.
 Als de uitgang laag, 0 of als false wordt ingesteld, dan wordt er een 0V spanning op de desbetreffende pin geplaatst (door de inwendige elektronica van de µC).
 Als de uitgang hoog, 1 of als true wordt ingesteld dan wordt er een spanning gelijk aan de voedingsspanning op de pin geplaatst. Bij de EPS32 is dit een spanning van 3,3V.
 De methode Pin.value(param) heeft één parameter die moeten worden meegegeven tussen haakjes. Die parameter heeft de toestand van die pin aan (hoog of laag, 1 of 0, True of False)is de IO-pin waarover het gaat. Hier is dit *LED* die aangesloten is op IO-pin 13. 

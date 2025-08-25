@@ -40,7 +40,7 @@ De ESP32 kan via verschillende platformen worden geprogrammeerd. Het is heel pop
 Thonny, is een IDE die voor verschillende doeleinden kan worden gebruikt. Je kan Thonny gebruiken voor ontwikkelingen met Python.
 
 
-De Thonny IDE is een goede ontwikkelomgeving voor python code voor zowel computer als microcontrollers. Voor de microcontroller wordt niet dezelfde python omgeving gebruikt als python scripts voor op de computer, maar hier wordt gebruik gemaakt van MicroPython. Dit is een ontwikkelomgeving die specifiek is ontwikkeld voor microprocessoren en controllers. Tevens bezit Thonny een Serial Terminal scherm die het mogelijk maakt om tijdens de run van de ESP32 serieëel data te kunnen uitwisselen. Dit kan een ondersteuning zijn voor het debuggen van uw code.
+De Thonny IDE is een goede ontwikkelomgeving voor python code voor zowel computer als microcontrollers. Voor de microcontroller wordt niet dezelfde python omgeving gebruikt als python scripts voor op de computer, maar hier wordt gebruik gemaakt van MicroPython. Dit is een ontwikkelomgeving die specifiek is ontwikkeld voor microprocessoren en controllers. Tevens bezit Thonny een Serial Terminal scherm die het mogelijk maakt om tijdens de run van de ESP32 serieel data te kunnen uitwisselen. Dit kan een ondersteuning zijn voor het debuggen van uw code.
 
 :::warning
 Een echte debug-tool met breakpoints is zonder extra hardware echter niet mogelijk, maar het kan wel.
