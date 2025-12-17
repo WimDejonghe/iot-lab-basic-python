@@ -74,8 +74,8 @@ while True:
 
 <div style="background-color:darkgreen; text-align:left; vertical-align:left; padding:15px;">
 <p style="color:lightgreen; margin:10px">
-Opdracht1: Maak een programma waarbij de spanning op de analoge ingang A2 wordt gelezen en doorgestuurd wordt naar een seriële monitor op de PC.<br>
-Sluit een potentiometer aan op de analoge ingang A2 via een breadbord.
+Opdracht1: Maak een programma waarbij de spanning op de analoge ingang wordt gelezen en doorgestuurd wordt naar een seriële monitor (shell) op de PC.<br>
+Gebruik de potentiometer op de shield.
 </p>
 </div>
 
