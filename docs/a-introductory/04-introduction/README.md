@@ -4,7 +4,7 @@ Om nu met het geheel te werk te gaan (schrijven van code, compileren en uploaden
 Er zijn echter twee manieren om een script uit te voeren op de microcontroller.
 
 > - de eerste manier is door een python bestand aan te maken op de computer en die te laten uitvoeren op de microcontroller. Dat gebeurt door op het groene driehoekje te klikken (F5), Run current script te klikken. Hierbij wordt het script aangeboden aan de MicroPython omgeving op de microcontroller en zal deze het script uitvoeren. Let wel: het script wordt niet bewaard op de microcontroller. Na een reset van de ESP32 is het script niet aanwezig op de microcontroller en kan het dus ook niet meer worden uitgevoerd. Het script staat wel als .py bestand op de computer.
-> - de tweede manier is om de Python script code te bewaren op de micrcontroller zelf. Gebeurt dit onder de naam main.py of boot.py, dan zal het script telkens worden uitgevoerd na een reset van de microcontroller.
+> - de tweede manier is om de Python script code te bewaren op de micrcontroller zelf. Gebeurt dit onder de naam `main.py` of `boot.py`, dan zal het script telkens worden uitgevoerd na een reset van de microcontroller.
 
 ## Eerste manier
 
