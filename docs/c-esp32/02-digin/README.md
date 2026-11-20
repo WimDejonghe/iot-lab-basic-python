@@ -94,13 +94,6 @@ Samengevat krijgen we deze opstellingen met pull-up weerstanden. Uitzonderlijk k
 Een pull-up weerstand wordt het meest gebruikt. Het nadeel is dat men een 1 krijgt als de drukknop niet is ingedrukt en een 0 als de drukknop is ingedrukt. Je kan dit zien als een NEGATIEVE LOGICA of een ACTIEF LAGE manier om een drukknop te gebruiken.
 :::
 
-## Aansluiten van sensoren (bv drukknoppen) met een pulldown weerstand
-
-Het schema om een drukknop aan te sluiten aan een microcontroller met een pull-down weerstand is weergegeven in de volgende figuur.
-
-![example image](./images/schema5.png "Aansluiten van een drukknop met een pull-down weerstand.")
-
-Als je naar het schema kijkt wordt er niet alleen een drukknop gebruikt maar ook een weerstand. Deze weerstand noemt een pull-down weerstand omdat hij de ingang aan 0V verbindt als de drukknop niet is ingedrukt.
 
 ## pinMode
 
@@ -140,6 +133,24 @@ while True:
 ```
 De toestand van de drukknop wordt gelezen en wordt onmiddelijk toegekend aan de toestand van de digitale uitgang. 
 
+Het zelfde resultaat kan bekomen worden met een selectie-statement in Python. Het statement `IF`. Meer info kan gevonden worden op :[MicroPython](https://et-robotics.netlify.app/arduino_c/)
+
+
+
+```python
+from machine import Pin
+
+led_onboard = Pin(13, Pin.OUT, value=0)    # create output pin on GPIO13, by start is the pin Low
+drukknop = Pin(21, Pin.IN)      # create input pin on GPIO21
+while True:                         #herhaal volgend stuk code oneindig lang
+    if drukknop.value() == False:   #drukknop ingedrukt?
+      led_onboard.value(True)       #Ja => LED aan
+    else:                           
+      led_onboard.value(False)      #Nee => LED uit
+
+```
+
+
 > :bulb: **Tip:** Wat zijn de bevindingen? Wanneer licht de LED op? Bij het drukken of niet drukken op de drukknop? Welke conclusie kan hier worden getrokken?
 
 ::: tip
@@ -162,13 +173,67 @@ Opdracht: Digitale ingang blokgolf. </p>
 <li style="color:white">Als de drukknop is ingedrukt moet er een blokgolfspanning op een uitgang gegenereerd worden met een periode van 100Hz met een duty cycle van 50% (Ton = Toff).</li>
 </ul>
 <p style="color:lightgreen; margin:10px">
-Visualiseer het resultaat met een oscilloscoop. Leg de werking uit van de oscilloscoop. Verklaar duidelijk wat Volt/div en Time/div is op basis van uw signalen. Zoek op wat duty cycle is en verklaar.
+Visualiseer het resultaat met een oscilloscoop. Leg de werking uit van de oscilloscoop. Verklaar duidelijk wat Volt/div en Time/div is op basis van uw signalen. Geef duidelijk aan wat periode(T) is van een signaal. Ook wat frequentie(f) is, waar zit de NUL-VOLT? Wat is de amplitude van het signaal? Zoek op wat duty cycle is en verklaar.
 </p>
 </div>
 
 ***
 
-<div style="background-color:darkgreen; text-align:left; vertical-align:left; padding:15px;">
+## Tellen bij een drukknop.
+
+Het spanningsverloop aan de ingangspin ziet er dan als volgt uit:
+
+![example image](./images/ut.png "Spanningsverloop bij bedienen drukknop.")
+
+Dit toont het geïdealiseerde signaal (zonder rekening te houden met contactdender/bounce, wat in de praktijk ook optreedt bij mechanische drukknoppen):
+
+- In rust (knop los): de pin staat hoog (3.3V), omdat de pull-up weerstand de lijn naar boven trekt.
+- Bij het indrukken: de knop verbindt de pin met massa, waardoor de spanning naar 0V valt — dit is de dalende flank die de code detecteert (nieuweWaardeSW1 == False en vorigeWaardeSW1 == True).
+- Bij het loslaten: de pin gaat terug naar 3.3V — de stijgende flank, die in deze code niet apart afgehandeld wordt.
+
+Dit is precies waarom de code met vorigeWaardeSW1 werkt: door de vorige en de huidige waarde te vergelijken, wordt enkel het moment van overgang (het indrukken) geteld, en niet elke lus-iteratie zolang de knop ingedrukt blijft.
+
+**Werking van de code (uitleg)**
+
+Dit stukje MicroPython telt hoe vaak drukknop sw1 wordt ingedrukt, en steekt LED led1 aan telkens de 10e druk gebeurt.
+
+- nieuweWaardeSW1 leest telkens de huidige stand van de knop.
+- vorigeWaardeSW1 onthoudt de stand van de vorige lus-iteratie.
+- Door beide te vergelijken, detecteert de code een dalende flank: het moment waarop de knop van niet ingedrukt (True) naar ingedrukt (False) gaat. Dit voorkomt dat één druk op de knop meerdere keren geteld wordt zolang je hem ingedrukt houdt.
+- Bij elke gedetecteerde druk wordt teller verhoogd. Bij de 10e keer gaat led1 aan en wordt de teller terug op 0 gezet; anders gaat de LED uit (of blijft ze uit).
+- Cruciaal: na elke lus-iteratie, ongeacht of er een druk gedetecteerd werd, moet vorigeWaardeSW1 bijgewerkt worden naar de huidige waarde. Zo is de vergelijking bij de volgende iteratie weer correct.
+
+**Opdracht voor de student**
+
+Opdracht: Onderstaande code zou een drukknoptelling moeten bijhouden en na 10 keer drukken de LED laten oplichten. De code compileert en start op, maar werkt niet correct: na de eerste druk op de knop reageert het programma niet meer op verdere drukken.
+
+Zoek de fout in de code en herstel de werking zodat de teller bij elke druk op de knop correct verhoogt, en de LED effectief aangaat bij de 10e druk.
+
+```python
+nieuweWaardeSW1 = True
+vorigeWaardeSW1 = True
+teller = 0
+
+while True:
+    nieuweWaardeSW1 = sw1.value()
+    if ((nieuweWaardeSW1 == False) and (vorigeWaardeSW1 == True)):
+        teller += 1
+        if (teller == 10):
+            led1.value(True)
+            teller = 0
+        else:
+            led1.value(False)
+        vorigeWaardeSW1 = nieuweWaardeSW1
+
+```
+
+:::tip
+kijk goed naar de inspringing (indentation) van de code en denk na over wanneer vorigeWaardeSW1 bijgewerkt moet worden.
+:::
+
+
+
+<div style="background-color:darkred; text-align:left; vertical-align:left; padding:15px;">
 <p style="color:lightgreen; margin:10px">
 Opdracht: Digitale ingang tellen. </p>
 <ul style="color:white">
@@ -179,6 +244,8 @@ Opdracht: Digitale ingang tellen. </p>
 Bij de elfde keer drukken gaat de LED weer uit en begint alles opnieuw, 10 keer LED 1 keer aan, .... Leg duidelijk uit hoe een flankdetectie werkt en wat dender is!
 </p>
 </div>
+
+
 
 
 
