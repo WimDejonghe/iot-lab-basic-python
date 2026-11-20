@@ -163,7 +163,7 @@ def ToonLEDS (data):
 
 ```
 
-<div style="background-color:darkgreen; text-align:left; vertical-align:left; padding:15px;">
+<div style="background-color:darkred; text-align:left; vertical-align:left; padding:15px;">
 <p style="color:lightgreen; margin:10px">
 Opdracht3: Zorg dat je met voorgaande methode een analoge ingang inleest, en dat die waarde binair wordt weergegeven op de 8 LEDS (256 combinaties).
 </p>
@@ -203,7 +203,7 @@ Opdracht7: Wat is de minimum delay tijd bij het knipperen van een LED zodat we h
 
 ***
 
-<div style="background-color:darkgreen; text-align:left; vertical-align:left; padding:15px;">
+<div style="background-color:darkred; text-align:left; vertical-align:left; padding:15px;">
 <p style="color:lightgreen; margin:10px">
 Opdracht8: Wijzig bij het onzichtbaar knipperen (door de hoge knipperfrequentie) de AAN-tijd tot 10% van de knipperperiode. Wat is dit in seconden? wat is dan de UIT-tijd in seconden? Let wel de knipperfrequentie mag niet wijzigen. Meet met de oscilloscoop. Bereken en bepaal het verband met uw delay tijden. 
 </p>

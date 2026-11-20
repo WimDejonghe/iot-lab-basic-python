@@ -98,7 +98,7 @@ Opdracht: Maak een programma waarbij de spanning op de analoge uitgang DAC2 de g
 
 ***
 
-<div style="background-color:darkgreen; text-align:left; vertical-align:left; padding:15px;">
+<div style="background-color:darkred; text-align:left; vertical-align:left; padding:15px;">
 <p style="color:lightgreen; margin:10px">
 Opdracht: Maak een programma waarbij de spanning op de analoge uitgang DAC2 de golfvorm krijgt zoals hieronder afgebeeld met een frequentie van 100Hz.
 </p>
