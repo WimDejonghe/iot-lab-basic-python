@@ -96,6 +96,15 @@ module.exports = {
         ]
       },
       {
+        text: 'Logische poorten',
+        children: [
+          '/i-logic/README.md',
+          
+          
+                   
+        ]
+      },
+      {
         text: 'PWM',
         children: [
          
@@ -108,15 +117,7 @@ module.exports = {
                    
         ]
       },
-      {
-        text: 'Logische poorten',
-        children: [
-          '/i-logic/README.md',
-          
-          
-                   
-        ]
-      },
+      
      
     ],
     sidebarDepth: 1,
