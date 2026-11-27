@@ -151,7 +151,8 @@ p0.value(1)             # set pin to on/high
 <p style="color:lightgreen; margin:10px">
 Opdracht: Maak een programma om een rode en groene led extern aan te sturen. Sluit de rode led aan op een output-pin en de groene led op een andere output-pin. De rode led heeft een voedingsspanning nodig van ongeveer 1,6V en de groene led een spanning van 2V. Beide verbruiken een stroom van 10mA. Bereken de twee Rv's. <br>
 Beide leds moeten alternerend knipperen waarbij de periode gelijk is aan 1 seconde. Dit wil zeggen als de rode led brandt, dat de groene led niet brandt en omgekeerd. De leds zijn in de periode van 1 seconde even lang aan als uit (= duty cycle = 50%).<br>
-Teken het schema, schrijf het programma (met commentaar), test en toon aan de docent.<br>
+Teken het schema, schrijf het programma (met commentaar).<br>
+Wat is de frequentie en de periode van het uitgangssignaal op een specifieke pin?
 </p>
 </div>
 
