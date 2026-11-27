@@ -18,7 +18,7 @@ De shield heeft 4 drukknoppen, 8 leds, een trimmer en een connector om SPI- en I
 | SW2| 34| 
 | SW3| 25 | 
 | SW4| 26 | 
-| LED1| 21 | 
+| LED1| 4 | 
 | LED2| 14 | 
 | LED3| 32 | 
 | LED4| 15 | 
@@ -26,7 +26,7 @@ De shield heeft 4 drukknoppen, 8 leds, een trimmer en een connector om SPI- en I
 | LED6| 27 | 
 | LED7| 12 | 
 | LED8| 13 | 
-| POT| A4 | 
+| POT| 36 | 
 
 ![example image](./images/schema.png "De ESP32 shield.")
 
@@ -37,21 +37,21 @@ Onderstaande code kan men gebruiken om de shield te testen.
 ```python
 from machine import Pin, ADC
 from time import sleep
-led1 = Pin(21, Pin.OUT)
-led2 = Pin(14, Pin.OUT)
-led3 = Pin(32, Pin.OUT)
-led4 = Pin(15, Pin.OUT)
-led5 = Pin(33, Pin.OUT)
-led6 = Pin(27, Pin.OUT)
-led7 = Pin(12, Pin.OUT)
-led8 = Pin(13, Pin.OUT)
+led1 = Pin(??, Pin.OUT)
+led2 = Pin(??, Pin.OUT)
+led3 = Pin(??, Pin.OUT)
+led4 = Pin(??, Pin.OUT)
+led5 = Pin(??, Pin.OUT)
+led6 = Pin(??, Pin.OUT)
+led7 = Pin(??, Pin.OUT)
+led8 = Pin(??, Pin.OUT)
 
-sw1 = Pin(39, Pin.IN)
-sw2 = Pin(34, Pin.IN)
-sw3 = Pin(25, Pin.IN)
-sw4 = Pin(26, Pin.IN)
+sw1 = Pin(??, Pin.IN)
+sw2 = Pin(??, Pin.IN)
+sw3 = Pin(??, Pin.IN)
+sw4 = Pin(??, Pin.IN)
 
-potentiometer = ADC(36)
+potentiometer = ADC(??)
 potWaarde = 0
 
 while True:
